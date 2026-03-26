@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoLabs — We Build Apps & Websites That People Love</title>
+    <meta name="description" content="AutoLabs builds world-class apps and websites. From concept to launch, we design and develop digital products that drive real business results.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <nav class="globalheader" id="navbar">
+        <div class="gh-inner">
+            <a href="#" class="gh-logo" aria-label="AutoLabs">
+                <svg width="18" height="18" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="7" fill="currentColor"/>
+                    <path d="M10 16L14 20L22 12" stroke="#1d1d1f" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+            <div class="gh-links" id="ghLinks">
+                <a href="#apps">Apps</a>
+                <a href="/websites.html">Websites</a>
+                <a href="/design.html">Design</a>
+                <a href="#work">Our Work</a>
+                <a href="#process">Process</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="gh-actions">
+                <button class="gh-menu-btn" id="menuBtn" aria-label="Menu">
+                    <span class="gh-menu-icon"><span></span><span></span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="ribbon ribbon-dark ribbon-hero section-fade">
+        <div class="ribbon-body">
+            <h1 class="ribbon-eyebrow" data-animate>AutoLabs</h1>
+            <h2 class="ribbon-headline headline-xl word-reveal">Apps & Websites.<br>Built to Perfection.</h2>
+            <p class="ribbon-copy" data-animate>We design and develop digital products that users love<br class="hide-sm">and businesses depend on.</p>
+            <div class="ribbon-ctas" data-animate>
+                <a href="#contact" class="cta-blue">Start a project <span class="chevron">›</span></a>
+                <a href="#work" class="cta-film">See our work <span class="chevron">›</span></a>
+            </div>
+            <div class="trust-badges" data-stagger>
+                <div class="trust-badge">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FFD700"/></svg>
+                    <span>Rated 4.9+</span>
+                </div>
+                <div class="trust-badge">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="#2997ff"/><path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span>SEO Optimised</span>
+                </div>
+                <div class="trust-badge">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#2997ff"/><path d="M12 6v6l4 2" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <span>30-day free post-launch support</span>
+                </div>
+            </div>
+        </div>
+        <div class="ribbon-media hero-media" data-animate>
+            <div class="hero-devices" data-parallax="-0.05">
+                <div class="device-laptop">
+                    <div class="laptop-screen">
+                        <!-- Phase 1: Code editor -->
+                        <div class="screen-code" id="laptopCode">
+                            <div class="code-titlebar">
+                                <span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span>
+                                <span class="code-filename">App.tsx</span>
+                            </div>
+                            <div class="code-gutter-wrap">
+                                <div class="code-gutter" id="laptopGutter"></div>
+                                <pre class="code-body" id="laptopCodeBody"></pre>
+                            </div>
+                            <div class="code-cursor" id="laptopCursor"></div>
+                        </div>
+                        <!-- Phase 2: Finished app UI -->
+                        <div class="screen-app" id="laptopApp">
+                            <div class="app-nav"><div class="app-logo"></div><div class="app-nav-links"><span></span><span></span><span></span></div><div class="app-nav-btn"></div></div>
+                            <div class="app-hero-section">
+                                <div class="app-badge"></div>
+                                <div class="app-title"></div>
+                                <div class="app-subtitle"></div>
+                                <div class="app-cta-row"><div class="app-cta-primary"></div><div class="app-cta-secondary"></div></div>
+                            </div>
+                            <div class="app-cards-section">
+                                <div class="app-card"><div class="app-card-icon"></div><div class="app-card-text"><div class="app-card-h"></div><div class="app-card-p"></div></div></div>
+                                <div class="app-card"><div class="app-card-icon"></div><div class="app-card-text"><div class="app-card-h"></div><div class="app-card-p"></div></div></div>
+                                <div class="app-card"><div class="app-card-icon"></div><div class="app-card-text"><div class="app-card-h"></div><div class="app-card-p"></div></div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="laptop-bottom"></div>
+                </div>
+                <div class="device-phone">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <!-- Phase 1: Code editor (mobile) -->
+                        <div class="screen-code phone-code" id="phoneCode">
+                            <div class="code-titlebar sm">
+                                <span class="code-dot red sm"></span><span class="code-dot yellow sm"></span><span class="code-dot green sm"></span>
+                                <span class="code-filename sm">index.tsx</span>
+                            </div>
+                            <pre class="code-body sm" id="phoneCodeBody"></pre>
+                            <div class="code-cursor sm" id="phoneCursor"></div>
+                        </div>
+                        <!-- Phase 2: Mobile app UI -->
+                        <div class="screen-app phone-app" id="phoneApp">
+                            <div class="ph-app-status"><span></span><span></span></div>
+                            <div class="ph-app-avatar"></div>
+                            <div class="ph-app-greeting"></div>
+                            <div class="ph-app-search"></div>
+                            <div class="ph-app-cards-row"><div class="ph-app-minicard"></div><div class="ph-app-minicard"></div></div>
+                            <div class="ph-app-list"><div class="ph-app-list-item"></div><div class="ph-app-list-item"></div><div class="ph-app-list-item"></div></div>
+                            <div class="ph-app-tab-bar"><span></span><span></span><span class="active"></span><span></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Logo Marquee Banner -->
+    <div class="logo-marquee">
+        <div class="marquee-track">
+            <div class="marquee-logos">
+                <div class="marquee-item has-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple"><span>Apple</span></div>
+                <div class="marquee-item has-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google"><span>Google</span></div>
+                <div class="marquee-item has-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon"><span>Amazon</span></div>
+                <div class="marquee-item has-logo"><img class="marquee-favicon" src="https://www.google.com/s2/favicons?domain=therevertumrah.com&sz=64" alt="The Revert Umrah"><span>The Revert Umrah</span></div>
+                <div class="marquee-item has-logo"><img class="marquee-favicon" src="https://www.google.com/s2/favicons?domain=akhookum.com&sz=64" alt="Akhookum"><span>Akhookum</span></div>
+                <div class="marquee-item has-logo"><img class="marquee-favicon" src="https://www.google.com/s2/favicons?domain=getsmotives.com&sz=64" alt="Getsmotives"><span>Getsmotives</span></div>
+                <div class="marquee-item has-logo"><img class="marquee-favicon" src="https://www.google.com/s2/favicons?domain=kayanaforbusiness.com&sz=64" alt="Kayana"><span>Kayana</span></div>
+                <div class="marquee-item has-logo"><img class="marquee-favicon" src="https://www.google.com/s2/favicons?domain=sssolutions.uk&sz=64" alt="S&amp;S Solutions"><span>S&amp;S Solutions</span></div>
+                <div class="marquee-item has-logo"><img class="marquee-favicon" src="https://www.google.com/s2/favicons?domain=flamefishgrill.com&sz=64" alt="Flame Fish &amp; Grill"><span>Flame Fish &amp; Grill</span></div>
+                <div class="marquee-item has-logo"><img class="marquee-favicon" src="https://www.google.com/s2/favicons?domain=tasteoffish.com&sz=64" alt="Taste of Fish"><span>Taste of Fish</span></div>
+                <div class="marquee-item has-logo"><img class="marquee-favicon" src="https://www.google.com/s2/favicons?domain=hayatfunctionhall.com&sz=64" alt="Hayat Function Hall"><span>Hayat Function Hall</span></div>
+                <div class="marquee-item has-logo"><img class="marquee-favicon" src="https://www.google.com/s2/favicons?domain=idapfootballacademy.com&sz=64" alt="IDAP Football Academy"><span>IDAP Football Academy</span></div>
+                <div class="marquee-item has-logo"><img class="marquee-favicon" src="https://www.google.com/s2/favicons?domain=mathrix.co.uk&sz=64" alt="Mathrix"><span>Mathrix</span></div>
+                <div class="marquee-item has-logo"><img class="marquee-favicon" src="https://www.google.com/s2/favicons?domain=autonomouslab.co.uk&sz=64" alt="Autonomous Lab"><span>Autonomous Lab</span></div>
+            </div>
+            <div class="marquee-logos" aria-hidden="true">
+                <div class="marquee-item has-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple"><span>Apple</span></div>
+                <div class="marquee-item has-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google"><span>Google</span></div>
+                <div class="marquee-item has-logo"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon"><span>Amazon</span></div>
+                <div class="marquee-item has-logo"><img class="marquee-favicon" src="https://www.google.com/s2/favicons?domain=therevertumrah.com&sz=64" alt="The Revert Umrah"><span>The Revert Umrah</span></div>
+                <div class="marquee-item has-logo"><img class="marquee-favicon" src="https://www.google.com/s2/favicons?domain=akhookum.com&sz=64" alt="Akhookum"><span>Akhookum</span></div>
+                <div class="marquee-item has-logo"><img class="marquee-favicon" src="https://www.google.com/s2/favicons?domain=getsmotives.com&sz=64" alt="Getsmotives"><span>Getsmotives</span></div>
+                <div class="marquee-item has-logo"><img class="marquee-favicon" src="https://www.google.com/s2/favicons?domain=kayanaforbusiness.com&sz=64" alt="Kayana"><span>Kayana</span></div>
+                <div class="marquee-item has-logo"><img class="marquee-favicon" src="https://www.google.com/s2/favicons?domain=sssolutions.uk&sz=64" alt="S&amp;S Solutions"><span>S&amp;S Solutions</span></div>
+                <div class="marquee-item has-logo"><img class="marquee-favicon" src="https://www.google.com/s2/favicons?domain=flamefishgrill.com&sz=64" alt="Flame Fish &amp; Grill"><span>Flame Fish &amp; Grill</span></div>
+                <div class="marquee-item has-logo"><img class="marquee-favicon" src="https://www.google.com/s2/favicons?domain=tasteoffish.com&sz=64" alt="Taste of Fish"><span>Taste of Fish</span></div>
+                <div class="marquee-item has-logo"><img class="marquee-favicon" src="https://www.google.com/s2/favicons?domain=hayatfunctionhall.com&sz=64" alt="Hayat Function Hall"><span>Hayat Function Hall</span></div>
+                <div class="marquee-item has-logo"><img class="marquee-favicon" src="https://www.google.com/s2/favicons?domain=idapfootballacademy.com&sz=64" alt="IDAP Football Academy"><span>IDAP Football Academy</span></div>
+                <div class="marquee-item has-logo"><img class="marquee-favicon" src="https://www.google.com/s2/favicons?domain=mathrix.co.uk&sz=64" alt="Mathrix"><span>Mathrix</span></div>
+                <div class="marquee-item has-logo"><img class="marquee-favicon" src="https://www.google.com/s2/favicons?domain=autonomouslab.co.uk&sz=64" alt="Autonomous Lab"><span>Autonomous Lab</span></div>
+            </div>
+        </div>
+    </div>
+
+    <section class="ribbon ribbon-dark section-fade" id="apps">
+        <div class="ribbon-body">
+            <p class="ribbon-eyebrow" data-animate>App Development</p>
+            <h2 class="ribbon-headline headline-lg word-reveal">Your app.<br><span class="text-grad">Our obsession.</span></h2>
+            <p class="ribbon-copy" data-animate>Native iOS. Native Android. Cross-platform.<br class="hide-sm">We build apps that feel like they belong on every device.</p>
+            <div class="ribbon-ctas" data-animate>
+                <a href="#contact" class="cta-blue">Start your app <span class="chevron">›</span></a>
+                <a href="#work" class="cta-link">See app projects <span class="chevron">›</span></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="ribbon ribbon-light section-fade section-fade-light" id="websites">
+        <div class="ribbon-body">
+            <p class="ribbon-eyebrow dark" data-animate>Web Development</p>
+            <h2 class="ribbon-headline headline-lg dark word-reveal">Websites that<br><span class="text-grad-dark">convert.</span></h2>
+            <p class="ribbon-copy dark" data-animate>Lightning-fast. Beautifully responsive. SEO-optimized from day one.<br class="hide-sm">Every site we build is engineered to perform.</p>
+            <div class="ribbon-ctas" data-animate>
+                <a href="#contact" class="cta-blue">Start your website <span class="chevron">›</span></a>
+                <a href="#work" class="cta-link dark">See web projects <span class="chevron">›</span></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="dual-section" id="design">
+        <div class="dual-grid">
+            <div class="dual-card" data-animate>
+                <p class="ribbon-eyebrow">UI/UX Design</p>
+                <h3 class="dual-headline">Design that feels<br>inevitable.</h3>
+                <p class="dual-copy">Interfaces so intuitive, users never have to think. Every interaction, intentional. Every pixel, purposeful.</p>
+                <a href="#contact" class="cta-blue">Learn more <span class="chevron">›</span></a>
+                <div class="dual-visual">
+                    <div class="orbit">
+                        <div class="orbit-ring"></div>
+                        <div class="orbit-ring mid"></div>
+                        <div class="orbit-core">UX</div>
+                    </div>
+                </div>
+            </div>
+            <div class="dual-card" data-animate>
+                <p class="ribbon-eyebrow">Strategy & Growth</p>
+                <h3 class="dual-headline">Launch is just<br>the beginning.</h3>
+                <p class="dual-copy">Analytics. A/B testing. Performance monitoring. We help you grow — not just deliver and disappear.</p>
+                <a href="#contact" class="cta-blue">Learn more <span class="chevron">›</span></a>
+                <div class="dual-visual">
+                    <svg class="growth-svg" viewBox="0 0 200 80" fill="none">
+                        <path d="M5,70 Q40,60 70,40 T130,18 T195,5" stroke="#2997ff" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        <circle cx="195" cy="5" r="5" fill="#2997ff"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="ribbon ribbon-dark ribbon-border section-fade" id="tech-stack">
+        <div class="ribbon-body">
+            <p class="ribbon-eyebrow" data-animate>Our Toolkit</p>
+            <h2 class="ribbon-headline headline-lg" data-animate>Technologies we <span class="text-grad">master.</span></h2>
+        </div>
+        <div class="tech-grid" data-stagger>
+            <div class="tech-item"><div class="tech-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.5" fill="#2997ff"/><ellipse cx="12" cy="12" rx="10" ry="4" stroke="#2997ff" stroke-width="1.5" fill="none"/><ellipse cx="12" cy="12" rx="10" ry="4" stroke="#2997ff" stroke-width="1.5" fill="none" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" stroke="#2997ff" stroke-width="1.5" fill="none" transform="rotate(120 12 12)"/></svg></div><span>React / Next.js</span></div>
+            <div class="tech-item"><div class="tech-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="5" y="2" width="14" height="20" rx="3" stroke="#2997ff" stroke-width="1.5"/><circle cx="12" cy="18" r="1" fill="#2997ff"/></svg></div><span>React Native</span></div>
+            <div class="tech-item"><div class="tech-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83" stroke="#2997ff" stroke-width="1.5" stroke-linecap="round"/></svg></div><span>Swift / iOS</span></div>
+            <div class="tech-item"><div class="tech-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M17 2l-5 5-2-2-5 5" stroke="#2997ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="10" width="18" height="12" rx="2" stroke="#2997ff" stroke-width="1.5"/><circle cx="8" cy="16" r="1.5" fill="#2997ff"/><circle cx="16" cy="16" r="1.5" fill="#2997ff"/></svg></div><span>Kotlin / Android</span></div>
+            <div class="tech-item"><div class="tech-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#2997ff" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 17l10 5 10-5" stroke="#2997ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12l10 5 10-5" stroke="#2997ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Node.js</span></div>
+            <div class="tech-item"><div class="tech-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M2 12h20" stroke="#2997ff" stroke-width="1.5" stroke-linecap="round"/><path d="M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07" stroke="#2997ff" stroke-width="1.5" stroke-linecap="round"/></svg></div><span>Python / Django</span></div>
+            <div class="tech-item"><div class="tech-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10" stroke="#2997ff" stroke-width="1.5" stroke-linecap="round"/><path d="M14 2.2A14.48 14.48 0 0121.8 10" stroke="#2997ff" stroke-width="1.5" stroke-linecap="round"/><path d="M2 12h4M12 2v4" stroke="#2997ff" stroke-width="1.5" stroke-linecap="round"/></svg></div><span>AWS / GCP</span></div>
+            <div class="tech-item"><div class="tech-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 19l7-7-3-3-7 7v3h3z" stroke="#2997ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 4l3 3" stroke="#2997ff" stroke-width="1.5" stroke-linecap="round"/></svg></div><span>Figma</span></div>
+        </div>
+    </section>
+
+    <!-- Pain Points Section -->
+    <section class="ribbon ribbon-light" id="pain-points">
+        <div class="ribbon-body">
+            <p class="ribbon-eyebrow dark" data-animate>The Problem</p>
+            <h2 class="ribbon-headline headline-lg dark word-reveal">Why most digital products<br><span class="text-grad-dark">fail to deliver results.</span></h2>
+            <p class="ribbon-copy dark" data-animate>Your app or website should be your best asset. Instead, most businesses are stuck with:</p>
+        </div>
+        <div class="pain-grid" data-stagger>
+            <div class="pain-card">
+                <div class="pain-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#e53e3e" stroke-width="1.5"/><path d="M15 9l-6 6M9 9l6 6" stroke="#e53e3e" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                <h3>No Online Credibility</h3>
+                <p>Prospects research you before reaching out. An outdated site or clunky app means you've already lost them before the conversation starts.</p>
+            </div>
+            <div class="pain-card">
+                <div class="pain-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" stroke="#e53e3e" stroke-width="1.5"/><path d="M8 15s1.5-2 4-2 4 2 4 2" stroke="#e53e3e" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="10" r="1" fill="#e53e3e"/><circle cx="15" cy="10" r="1" fill="#e53e3e"/></svg></div>
+                <h3>Developers Who Disappear</h3>
+                <p>You brief them, pay the deposit, and wait. Days become weeks. Emails go unanswered. Deadlines come and go with no explanation.</p>
+            </div>
+            <div class="pain-card">
+                <div class="pain-icon"><svg width="36" height="36" viewBox="0 0 24 24" fill="none"><path d="M3 3v18h18" stroke="#e53e3e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 14l4-4 4 4 5-5" stroke="#e53e3e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 9h3v3" stroke="#e53e3e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <h3>Pretty But No Conversions</h3>
+                <p>The product looks decent, but there's no clear call to action, no structure guiding users to convert, and no analytics to measure what's working.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="ribbon ribbon-dark section-fade" id="process">
+        <div class="ribbon-body">
+            <p class="ribbon-eyebrow" data-animate>How We Work</p>
+            <h2 class="ribbon-headline headline-lg word-reveal">Our proven <span class="text-grad">process.</span></h2>
+            <p class="ribbon-copy" data-animate>We don't hand you a template and disappear. Here's how we deliver results, every time.</p>
+        </div>
+        <div class="process-grid" data-stagger>
+            <div class="process-step">
+                <div class="process-num">1</div>
+                <h3>Discovery & Strategy</h3>
+                <p>We start with a deep-dive conversation — your business, goals, users, and vision. You walk away with complete clarity.</p>
+            </div>
+            <div class="process-step">
+                <div class="process-num">2</div>
+                <h3>Design & Prototyping</h3>
+                <p>We create wireframes, UI designs, and interactive prototypes. You see and approve everything before a single line of code is written.</p>
+            </div>
+            <div class="process-step">
+                <div class="process-num">3</div>
+                <h3>Development & Testing</h3>
+                <p>Your product gets built with clean code, SEO best practices, mobile-first design, and rigorous testing on every device.</p>
+            </div>
+            <div class="process-step">
+                <div class="process-num">4</div>
+                <h3>Launch & Support</h3>
+                <p>We handle deployment, walk you through everything, and provide 30 days of free post-launch support. You're never left alone.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="ribbon ribbon-dark section-fade" id="work">
+        <div class="ribbon-body">
+            <p class="ribbon-eyebrow" data-animate>Our Work</p>
+            <h2 class="ribbon-headline headline-lg word-reveal">200+ products launched.<br><span class="text-grad">Real results. Every time.</span></h2>
+        </div>
+        <div class="stats-bar" data-stagger>
+            <div class="stat-block"><span class="stat-num" data-count="200">0+</span><span class="stat-label">Apps & websites shipped</span></div>
+            <div class="stat-block"><span class="stat-num" data-count="96">0%</span><span class="stat-label">Client satisfaction</span></div>
+            <div class="stat-block"><span class="stat-num" data-count="4.9">0</span><span class="stat-label">Average app store rating</span></div>
+            <div class="stat-block"><span class="stat-num" data-count="50">0M+</span><span class="stat-label">Users across our products</span></div>
+        </div>
+        <div class="portfolio-grid" data-stagger>
+            <div class="portfolio-card"><div class="pc-img pc-1"></div><h4>Adyen</h4><p>Fintech Payment Platform</p></div>
+            <div class="portfolio-card"><div class="pc-img pc-2"></div><h4>Kayana</h4><p>Ordering & Payment Solutions</p></div>
+            <div class="portfolio-card"><div class="pc-img pc-3"></div><h4>Kamm Solutions</h4><p>Digital Engineering Agency</p></div>
+        </div>
+    </section>
+
+    <section class="ribbon ribbon-dark ribbon-border">
+        <div class="ribbon-body">
+            <p class="ribbon-eyebrow" data-animate>What Clients Say</p>
+            <h2 class="ribbon-headline headline-lg" data-animate>Don't take our word for it.</h2>
+        </div>
+        <div class="testi-row" data-stagger>
+            <div class="testi-card"><p>"AutoLabs rebuilt our entire platform. The result? 3x more conversions, 40% faster load times, and a product our users genuinely love."</p><div class="testi-author"><strong>Sarah Kim</strong><span>CEO, Adyen</span></div></div>
+            <div class="testi-card"><p>"They don't just build what you ask for — they build what you actually need. Our app hit #4 in the App Store within two weeks of launch."</p><div class="testi-author"><strong>James Ortiz</strong><span>Founder, Kamm Solutions</span></div></div>
+            <div class="testi-card"><p>"The design quality is on another level. Every screen, every interaction — it feels like a product from a company 10x our size."</p><div class="testi-author"><strong>Priya Sharma</strong><span>Head of Product, Kayana</span></div></div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="ribbon ribbon-dark ribbon-border" id="why-us">
+        <div class="ribbon-body">
+            <p class="ribbon-eyebrow" data-animate>Choosing Between Agencies?</p>
+            <h2 class="ribbon-headline headline-lg word-reveal">Here's what makes us<br><span class="text-grad">different.</span></h2>
+        </div>
+        <div class="compare-wrap" data-animate>
+            <table class="compare-table">
+                <thead>
+                    <tr><th>Benefit</th><th>What It Means For You</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Conversion-focused design</td><td>Layouts built to convert visitors, not just impress designers</td></tr>
+                    <tr><td>SEO-ready from day one</td><td>Rank on Google with an optimised structure from the start</td></tr>
+                    <tr><td>Mobile-first development</td><td>Majority of traffic is mobile — we design for that first</td></tr>
+                    <tr><td>Milestone-based delivery</td><td>Review progress at every stage, no surprises at the end</td></tr>
+                    <tr><td>No lock-in, ever</td><td>You own everything: code, design files, hosting access. Always.</td></tr>
+                    <tr><td>Post-launch support</td><td>30 days of free support included so you're never left alone</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Emotional CTA -->
+    <section class="ribbon ribbon-light ribbon-emotional">
+        <div class="ribbon-body">
+            <h2 class="ribbon-headline headline-lg dark word-reveal">Are you proud to share<br><span class="text-grad-dark">your website or app?</span></h2>
+            <p class="ribbon-copy dark" data-animate>If you hesitate before sharing the link, something's off. Let's fix that.</p>
+            <div class="ribbon-ctas" data-animate>
+                <a href="#contact" class="cta-blue">Start your transformation <span class="chevron">›</span></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="ribbon ribbon-light" id="pricing">
+        <div class="ribbon-body">
+            <p class="ribbon-eyebrow dark" data-animate>Pricing</p>
+            <h2 class="ribbon-headline headline-lg dark word-reveal">Transparent pricing.<br><span class="text-grad-dark">No surprises.</span></h2>
+            <p class="ribbon-copy dark" data-animate>Every project is scoped and quoted before we write a single line of code.</p>
+        </div>
+        <div class="price-row" data-stagger>
+            <div class="price-card"><h4>Starter</h4><div class="price-val">From £500</div><p class="price-desc">Landing pages, marketing sites, and MVPs.</p><ul><li>Responsive website</li><li>CMS integration</li><li>SEO foundations</li><li>2 revision rounds</li></ul><a href="#contact" class="cta-blue">Get started <span class="chevron">›</span></a></div>
+            <div class="price-card popular"><div class="pop-tag">Most Popular</div><h4>Growth</h4><div class="price-val">From £5,000</div><p class="price-desc">Custom apps and web platforms for growing companies.</p><ul><li>Native mobile or web app</li><li>UI/UX design from scratch</li><li>Backend & API development</li><li>Analytics setup</li><li>3 months post-launch support</li></ul><a href="#contact" class="cta-blue">Get started <span class="chevron">›</span></a></div>
+            <div class="price-card"><h4>Enterprise</h4><div class="price-val">Custom</div><p class="price-desc">Complex platforms and long-term partnerships.</p><ul><li>Dedicated product team</li><li>iOS + Android + Web</li><li>Custom integrations</li><li>Ongoing iteration</li><li>Priority SLA</li></ul><a href="#contact" class="cta-blue">Contact us <span class="chevron">›</span></a></div>
+        </div>
+    </section>
+
+    <!-- Getting Started Section -->
+    <section class="ribbon ribbon-dark" id="getting-started">
+        <div class="ribbon-body">
+            <p class="ribbon-eyebrow" data-animate>Getting Started</p>
+            <h2 class="ribbon-headline headline-lg word-reveal">How to <span class="text-grad">get started.</span></h2>
+        </div>
+        <div class="steps-grid" data-stagger>
+            <div class="step-card">
+                <div class="step-num">1</div>
+                <h3>Book a Free Consultation</h3>
+                <p>30-minute call to understand your goals. No pitch, no pressure.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">2</div>
+                <h3>Receive Your Proposal</h3>
+                <p>Clear scope, fixed price, realistic timeline. No mid-project surprises.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">3</div>
+                <h3>We Build, You Review</h3>
+                <p>Milestone-based delivery with your feedback at every stage.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">4</div>
+                <h3>Launch & Support</h3>
+                <p>Go live with training and 30 days of free post-launch support included.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="ribbon ribbon-light" id="faq">
+        <div class="ribbon-body">
+            <p class="ribbon-eyebrow dark" data-animate>FAQ</p>
+            <h2 class="ribbon-headline headline-lg dark" data-animate>Common <span class="text-grad-dark">questions.</span></h2>
+        </div>
+        <div class="faq-wrap" data-stagger>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    <span>How long does a typical project take?</span>
+                    <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="faq-answer"><p>4–6 weeks for standard websites and apps. Complex platforms or e-commerce builds may take 8–12 weeks depending on scope. We always provide a clear timeline before starting.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    <span>What if I don't have a design or brand ready?</span>
+                    <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="faq-answer"><p>That's completely fine. We offer full UI/UX design services including branding, content direction, and asset sourcing as part of our packages. You don't need everything figured out before starting.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    <span>I've been burned by developers before. How are you different?</span>
+                    <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="faq-answer"><p>We use milestone-based payments, share weekly progress updates, and sign clear contracts before any work begins. You review and approve at every stage — no surprises, no disappearing acts.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    <span>What if the scope changes mid-project?</span>
+                    <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="faq-answer"><p>We flag it immediately with a revised quote before proceeding. No silent overruns, no surprise invoices. You're always in control of the budget.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    <span>Do I own everything when it's done?</span>
+                    <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="faq-answer"><p>Yes, 100%. Code, design files, domain, hosting access — it's all yours. No lock-in, no proprietary traps. You can take your project anywhere.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    <span>Can you build both the app and the website?</span>
+                    <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <div class="faq-answer"><p>Absolutely. We build native iOS and Android apps, cross-platform apps with React Native, web apps, marketing websites, and e-commerce platforms — all under one roof.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ribbon ribbon-dark ribbon-cta" id="contact">
+        <div class="ribbon-body">
+            <h2 class="ribbon-headline headline-lg word-reveal">Let's build something<br><span class="text-grad">extraordinary.</span></h2>
+            <p class="ribbon-copy" data-animate>Tell us about your project. We'll respond within 24 hours<br class="hide-sm">with a free consultation and estimate.</p>
+        </div>
+        <div class="form-wrap" data-animate>
+            <form class="contact-form" id="contactForm" novalidate>
+                <div class="form-row">
+                    <div class="form-group"><label for="fullName">Full Name</label><input type="text" id="fullName" name="fullName" placeholder="John Smith" required autocomplete="name"><span class="form-error" id="fullNameError"></span></div>
+                    <div class="form-group"><label for="workEmail">Email</label><input type="email" id="workEmail" name="workEmail" placeholder="john@company.com" required autocomplete="email"><span class="form-error" id="workEmailError"></span></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label for="mobile">Mobile Number</label><input type="tel" id="mobile" name="mobile" placeholder="+44 7xxx xxx xxx" required autocomplete="tel"><span class="form-error" id="mobileError"></span></div>
+                    <div class="form-group"><label for="company">Company</label><input type="text" id="company" name="company" placeholder="Acme Inc." required autocomplete="organization"><span class="form-error" id="companyError"></span></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label for="projectType">Project Type</label><select id="projectType" name="projectType" required><option value="" disabled selected>Select a service</option><option value="mobile-app">Mobile App (iOS / Android)</option><option value="web-app">Web Application</option><option value="website">Website / Landing Page</option><option value="design">UI/UX Design</option><option value="full-product">Full Product Build</option><option value="other">Other</option></select><span class="form-error" id="projectTypeError"></span></div>
+                    <div class="form-group"><label for="budget">Budget Range</label><select id="budget" name="budget" required><option value="" disabled selected>Select budget</option><option value="0-500">£0 – £500</option><option value="500-2k">£500 – £2,000</option><option value="2-5k">£2,000 – £5,000</option><option value="5-10k">£5,000 – £10,000</option><option value="10-25k">£10,000 – £25,000</option><option value="25k+">£25,000+</option><option value="unsure">Not sure yet</option></select><span class="form-error" id="budgetError"></span></div>
+                </div>
+                <div class="form-group full"><label for="message">Tell us about your project</label><textarea id="message" name="message" rows="4" placeholder="Describe your vision, goals, timeline, and any specific requirements..."></textarea></div>
+                <button type="submit" class="submit-btn"><span class="btn-text">Get Your Free Consultation →</span><span class="btn-spinner" style="display:none"><svg class="spin-svg" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="31.4 31.4" stroke-linecap="round"/></svg>Sending...</span></button>
+                <p class="form-fine">Free consultation · No commitment · Response within 24 hours</p>
+            </form>
+            <div class="form-success" id="formSuccess" style="display:none"><svg width="56" height="56" viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="28" fill="#2997ff"/><path d="M18 28l7 7 13-13" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>We've received your request.</h3><p>A member of our team will reach out within 24 hours with a free project consultation. We can't wait to build something great together.</p></div>
+        </div>
+    </section>
+
+    <section class="ribbon ribbon-dark" id="interactive-demo">
+        <div class="ribbon-body">
+            <p class="ribbon-eyebrow" data-animate>Interactive Demo</p>
+            <h2 class="ribbon-headline headline-lg" data-animate>See our scroll animation<br><span class="text-grad">inside your homepage.</span></h2>
+            <p class="ribbon-copy" data-animate>This section is now embedded directly in your site and powered by the React feature integration.</p>
+        </div>
+        <div class="embedded-demo-wrap" data-animate>
+            <iframe
+                class="embedded-demo-frame"
+                src="/scroll-demo"
+                title="AutoLabs Scroll Animation Demo"
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+            ></iframe>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-cols">
+                <div class="footer-col"><h5>Services</h5><a href="#apps">App Development</a><a href="#websites">Web Development</a><a href="#design">UI/UX Design</a><a href="#">Strategy & Growth</a></div>
+                <div class="footer-col"><h5>Company</h5><a href="#">About Us</a><a href="#work">Our Work</a><a href="#">Careers</a><a href="#">Blog</a></div>
+                <div class="footer-col"><h5>Resources</h5><a href="#">Case Studies</a><a href="#">Process</a><a href="#">FAQ</a><a href="#contact">Contact</a></div>
+                <div class="footer-col"><h5>Connect</h5><a href="#">Twitter / X</a><a href="#">LinkedIn</a><a href="#">Dribbble</a><a href="#">GitHub</a></div>
+            </div>
+            <div class="footer-base"><span>Copyright &copy; 2026 AutoLabs. All rights reserved.</span><span class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a><a href="#">Legal</a></span></div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/447921051871" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat on WhatsApp">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span>Chat with us</span>
+    </a>
+
+    <script src="/script.js"></script>
+</body>
+</html>

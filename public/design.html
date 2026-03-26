@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI/UX Design — AutoLabs</title>
+    <meta name="description" content="How AutoLabs approaches UI/UX design. Learn about our design process, principles, and what makes a truly great digital experience.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <style>
+        /* Page layout */
+        .ds-page { max-width: 900px; margin: 0 auto; padding: 0 22px; }
+        .ds-hero { padding: 120px 22px 48px; text-align: center; max-width: 900px; margin: 0 auto; }
+        .ds-hero h1 { font-size: clamp(36px, 6vw, 56px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.08; margin-bottom: 16px; }
+        .ds-hero p { font-size: 18px; color: var(--gray-400); max-width: 600px; margin: 0 auto; line-height: 1.65; }
+        .ds-back { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--blue); margin-bottom: 32px; transition: gap .3s; }
+        .ds-back:hover { gap: 10px; }
+
+        /* Section blocks */
+        .ds-section { padding: 80px 0; border-top: 1px solid rgba(255,255,255,.06); }
+        .ds-section:first-of-type { border-top: none; }
+        .ds-section-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .12em; color: var(--blue); margin-bottom: 12px; }
+        .ds-section h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 20px; }
+        .ds-section p, .ds-section li { font-size: 16px; color: var(--gray-300); line-height: 1.7; }
+        .ds-section p + p { margin-top: 16px; }
+
+        /* Two-column layout */
+        .ds-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-top: 40px; }
+        .ds-cols.reverse { direction: rtl; }
+        .ds-cols.reverse > * { direction: ltr; }
+
+        /* Visual blocks */
+        .ds-visual { border-radius: 18px; overflow: hidden; aspect-ratio: 4/3; position: relative; }
+        .ds-visual svg { width: 100%; height: 100%; display: block; }
+
+        /* Principle cards */
+        .ds-principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+        .ds-principle { background: var(--gray-900); border-radius: 16px; padding: 32px 24px; transition: transform .5s cubic-bezier(.16,1,.3,1), box-shadow .4s; }
+        .ds-principle:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(41,151,255,.08); }
+        .ds-principle-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(41,151,255,.1); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+        .ds-principle h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+        .ds-principle p { font-size: 14px; color: var(--gray-400); line-height: 1.6; }
+
+        /* Process steps */
+        .ds-process { margin-top: 40px; counter-reset: step; }
+        .ds-step { display: grid; grid-template-columns: 64px 1fr; gap: 24px; padding: 32px 0; border-top: 1px solid rgba(255,255,255,.06); }
+        .ds-step-num { width: 52px; height: 52px; border-radius: 14px; background: rgba(41,151,255,.08); color: var(--blue); font-size: 20px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .ds-step h3 { font-size: 19px; font-weight: 600; margin-bottom: 6px; }
+        .ds-step p { font-size: 15px; color: var(--gray-400); line-height: 1.6; }
+
+        /* Anatomy diagram */
+        .ds-anatomy { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+        .ds-anatomy-item { background: var(--gray-900); border-radius: 14px; padding: 28px 22px; border-left: 3px solid var(--blue); }
+        .ds-anatomy-item h4 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+        .ds-anatomy-item p { font-size: 14px; color: var(--gray-400); line-height: 1.55; }
+
+        /* Comparison block */
+        .ds-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+        .ds-compare-card { border-radius: 16px; padding: 32px 28px; }
+        .ds-compare-card.bad { background: rgba(229,62,62,.06); border: 1px solid rgba(229,62,62,.15); }
+        .ds-compare-card.good { background: rgba(41,151,255,.06); border: 1px solid rgba(41,151,255,.15); }
+        .ds-compare-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 16px; }
+        .ds-compare-card.bad h3 { color: #e53e3e; }
+        .ds-compare-card.good h3 { color: var(--blue); }
+        .ds-compare-card ul { padding: 0; }
+        .ds-compare-card li { font-size: 14px; color: var(--gray-300); line-height: 1.6; padding: 6px 0; padding-left: 20px; position: relative; }
+        .ds-compare-card li::before { position: absolute; left: 0; }
+        .ds-compare-card.bad li::before { content: '\2717'; color: #e53e3e; }
+        .ds-compare-card.good li::before { content: '\2713'; color: var(--blue); }
+
+        /* CTA */
+        .ds-cta-block { text-align: center; padding: 80px 0 100px; }
+        .ds-cta-block h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 16px; }
+        .ds-cta-block p { font-size: 17px; color: var(--gray-400); margin-bottom: 32px; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+        .ds-cta-btn { display: inline-flex; align-items: center; gap: 6px; padding: 14px 32px; background: var(--blue); color: var(--white); border-radius: 980px; font-size: 15px; font-weight: 600; transition: background .3s, transform .3s; }
+        .ds-cta-btn:hover { background: var(--blue-hover); transform: translateY(-2px); }
+
+        /* Responsive */
+        @media (max-width: 734px) {
+            .ds-hero { padding: 100px 16px 36px; }
+            .ds-page { padding: 0 16px; }
+            .ds-cols, .ds-anatomy, .ds-compare, .ds-principles { grid-template-columns: 1fr; }
+            .ds-cols.reverse { direction: ltr; }
+            .ds-section { padding: 56px 0; }
+            .ds-step { grid-template-columns: 48px 1fr; gap: 16px; }
+            .ds-step-num { width: 44px; height: 44px; font-size: 17px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="globalheader" id="navbar">
+        <div class="gh-inner">
+            <a href="/" class="gh-logo" aria-label="AutoLabs">
+                <svg width="18" height="18" viewBox="0 0 32 32" fill="none">
+                    <rect width="32" height="32" rx="7" fill="currentColor"/>
+                    <path d="M10 16L14 20L22 12" stroke="#1d1d1f" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+            <div class="gh-links" id="ghLinks">
+                <a href="/">Home</a>
+                <a href="/#apps">Apps</a>
+                <a href="/websites.html">Websites</a>
+                <a href="/design.html">Design</a>
+                <a href="/#work">Our Work</a>
+                <a href="/#pricing">Pricing</a>
+                <a href="/#contact">Contact</a>
+            </div>
+            <div class="gh-actions">
+                <button class="gh-menu-btn" id="menuBtn" aria-label="Menu">
+                    <span class="gh-menu-icon"><span></span><span></span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="ds-hero">
+        <a href="/" class="ds-back"><span>&#8249;</span> Back to Home</a>
+        <h1>Design That <span class="text-grad">Converts.</span></h1>
+        <p>Great design isn't decoration. It's the invisible architecture that guides users from curiosity to action, effortlessly.</p>
+    </div>
+
+    <div class="ds-page">
+
+        <!-- Section 1: What is UI/UX -->
+        <div class="ds-section">
+            <div class="ds-section-label">The Foundation</div>
+            <h2>UI vs UX — What's the difference?</h2>
+            <div class="ds-cols">
+                <div>
+                    <p><strong style="color:var(--white)">UX (User Experience)</strong> is the strategy behind the product. It determines how a user flows through your site, what they feel at every step, and whether they accomplish their goal without friction.</p>
+                    <p><strong style="color:var(--white)">UI (User Interface)</strong> is every visual element they interact with — typography, colour, spacing, buttons, icons. It's the craft that makes the experience tangible and beautiful.</p>
+                    <p>At AutoLabs, we never separate the two. Every pixel serves a purpose, and every purpose has a pixel behind it.</p>
+                </div>
+                <div class="ds-visual">
+                    <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="300" rx="18" fill="#111"/>
+                        <!-- UX circle -->
+                        <circle cx="170" cy="150" r="90" fill="none" stroke="#2997ff" stroke-width="1.5" opacity=".3"/>
+                        <text x="130" y="145" fill="#2997ff" font-size="14" font-weight="600" font-family="Inter,sans-serif">UX</text>
+                        <text x="108" y="165" fill="#6e6e73" font-size="10" font-family="Inter,sans-serif">Research</text>
+                        <text x="108" y="180" fill="#6e6e73" font-size="10" font-family="Inter,sans-serif">Wireframes</text>
+                        <text x="108" y="195" fill="#6e6e73" font-size="10" font-family="Inter,sans-serif">User Flows</text>
+                        <!-- UI circle -->
+                        <circle cx="250" cy="150" r="90" fill="none" stroke="#40a9ff" stroke-width="1.5" opacity=".3"/>
+                        <text x="260" y="145" fill="#40a9ff" font-size="14" font-weight="600" font-family="Inter,sans-serif">UI</text>
+                        <text x="260" y="165" fill="#6e6e73" font-size="10" font-family="Inter,sans-serif">Colour</text>
+                        <text x="260" y="180" fill="#6e6e73" font-size="10" font-family="Inter,sans-serif">Typography</text>
+                        <text x="260" y="195" fill="#6e6e73" font-size="10" font-family="Inter,sans-serif">Components</text>
+                        <!-- Overlap text -->
+                        <text x="190" y="108" fill="#fff" font-size="10" font-weight="500" font-family="Inter,sans-serif">Product</text>
+                        <text x="191" y="122" fill="#fff" font-size="10" font-weight="500" font-family="Inter,sans-serif">Design</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: What makes a great website -->
+        <div class="ds-section">
+            <div class="ds-section-label">Core Principles</div>
+            <h2>What makes a great website?</h2>
+            <p>After building 200+ digital products, we've distilled what separates forgettable sites from ones that drive real business outcomes.</p>
+            <div class="ds-principles">
+                <div class="ds-principle">
+                    <div class="ds-principle-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#2997ff" stroke-width="1.5" stroke-linejoin="round"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="#2997ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3>Visual Hierarchy</h3>
+                    <p>The most important information should be the most visible. Size, weight, colour, and spacing work together to guide the eye exactly where it needs to go.</p>
+                </div>
+                <div class="ds-principle">
+                    <div class="ds-principle-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#2997ff" stroke-width="1.5"/><path d="M12 6v6l4 2" stroke="#2997ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3>Performance</h3>
+                    <p>A site that loads in under 2 seconds converts 2x more than one that takes 5. Speed is a design decision, not an engineering afterthought.</p>
+                </div>
+                <div class="ds-principle">
+                    <div class="ds-principle-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="5" y="2" width="14" height="20" rx="3" stroke="#2997ff" stroke-width="1.5"/><path d="M12 18h.01" stroke="#2997ff" stroke-width="2" stroke-linecap="round"/></svg>
+                    </div>
+                    <h3>Mobile-First</h3>
+                    <p>Over 60% of web traffic is mobile. We design for the smallest screen first and scale up, ensuring every breakpoint feels intentional.</p>
+                </div>
+                <div class="ds-principle">
+                    <div class="ds-principle-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v12H4z" stroke="#2997ff" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 20h8M12 16v4" stroke="#2997ff" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    </div>
+                    <h3>Whitespace</h3>
+                    <p>Empty space isn't wasted space. It creates breathing room, reduces cognitive load, and makes content feel premium and easy to digest.</p>
+                </div>
+                <div class="ds-principle">
+                    <div class="ds-principle-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="#2997ff" stroke-width="1.5"/><path d="M2 12h20" stroke="#2997ff" stroke-width="1.5"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" stroke="#2997ff" stroke-width="1.5"/></svg>
+                    </div>
+                    <h3>Accessibility</h3>
+                    <p>Great design works for everyone. Proper contrast ratios, semantic HTML, keyboard navigation, and screen reader support are non-negotiable.</p>
+                </div>
+                <div class="ds-principle">
+                    <div class="ds-principle-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M20.24 12.24a6 6 0 00-8.49-8.49L5 10.5V19h8.5l6.74-6.76z" stroke="#2997ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 8L2 22M17.5 15H9" stroke="#2997ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3>Consistency</h3>
+                    <p>Every button, heading, and interaction should feel like it belongs to the same system. Design tokens and component libraries make this scalable.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Our Design Process -->
+        <div class="ds-section">
+            <div class="ds-section-label">Our Process</div>
+            <h2>How we design, step by step</h2>
+            <p>Every project at AutoLabs follows a proven design process that moves from understanding to execution with zero guesswork.</p>
+            <div class="ds-process">
+                <div class="ds-step">
+                    <div class="ds-step-num">01</div>
+                    <div>
+                        <h3>Discovery &amp; Research</h3>
+                        <p>We start by understanding your business, your audience, and your competitors. We audit existing analytics, study user behaviour, and identify the core problems your product needs to solve. No assumptions — only evidence.</p>
+                    </div>
+                </div>
+                <div class="ds-step">
+                    <div class="ds-step-num">02</div>
+                    <div>
+                        <h3>Information Architecture</h3>
+                        <p>Before a single screen is designed, we map out the content structure, user flows, and navigation hierarchy. This invisible framework ensures users always know where they are and what to do next.</p>
+                    </div>
+                </div>
+                <div class="ds-step">
+                    <div class="ds-step-num">03</div>
+                    <div>
+                        <h3>Wireframing</h3>
+                        <p>Low-fidelity wireframes let us test layout concepts, content placement, and interaction patterns before investing in visual design. It's faster to iterate on structure when there's no colour or imagery to distract.</p>
+                    </div>
+                </div>
+                <div class="ds-step">
+                    <div class="ds-step-num">04</div>
+                    <div>
+                        <h3>Visual Design</h3>
+                        <p>This is where the wireframes come to life. We define the colour palette, typography system, iconography, imagery direction, and micro-interactions that give your brand a distinct, polished digital presence.</p>
+                    </div>
+                </div>
+                <div class="ds-step">
+                    <div class="ds-step-num">05</div>
+                    <div>
+                        <h3>Prototyping &amp; Testing</h3>
+                        <p>Interactive prototypes in Figma allow stakeholders and real users to experience the design before a line of code is written. We run usability tests, gather feedback, and refine until it's right.</p>
+                    </div>
+                </div>
+                <div class="ds-step">
+                    <div class="ds-step-num">06</div>
+                    <div>
+                        <h3>Design-to-Dev Handoff</h3>
+                        <p>Detailed specs, design tokens, exportable assets, and annotated interaction notes ensure developers implement the design with pixel-perfect accuracy. We stay involved through development to protect the vision.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Anatomy of a great page -->
+        <div class="ds-section">
+            <div class="ds-section-label">Page Anatomy</div>
+            <h2>The anatomy of a high-converting page</h2>
+            <p>Every element on a page should earn its place. Here's what the best-performing pages have in common.</p>
+            <div class="ds-anatomy">
+                <div class="ds-anatomy-item">
+                    <h4>Hero Section</h4>
+                    <p>A clear, compelling headline above the fold. Visitors decide within 3 seconds whether to stay. The hero must answer: "What is this, and why should I care?"</p>
+                </div>
+                <div class="ds-anatomy-item">
+                    <h4>Social Proof</h4>
+                    <p>Trust badges, client logos, testimonials, and statistics placed early reduce scepticism. People follow people — proof that others trust you accelerates decisions.</p>
+                </div>
+                <div class="ds-anatomy-item">
+                    <h4>Clear CTAs</h4>
+                    <p>Every section should guide toward one primary action. Buttons need strong contrast, action-oriented copy, and strategic placement at natural decision points.</p>
+                </div>
+                <div class="ds-anatomy-item">
+                    <h4>Benefit-Led Copy</h4>
+                    <p>Features tell, benefits sell. Instead of "We use React," say "Your app loads in under a second." Speak to outcomes, not tools.</p>
+                </div>
+                <div class="ds-anatomy-item">
+                    <h4>Visual Storytelling</h4>
+                    <p>Screenshots, illustrations, and motion design show — not tell — how your product works. Visuals reduce reading effort and increase memory retention by 65%.</p>
+                </div>
+                <div class="ds-anatomy-item">
+                    <h4>Friction-Free Forms</h4>
+                    <p>Ask only what you need. Every extra field reduces completion by 10%. Auto-fill support, clear labels, inline validation, and progress indicators build confidence.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Good vs Bad design -->
+        <div class="ds-section">
+            <div class="ds-section-label">The Difference</div>
+            <h2>Good design vs. bad design</h2>
+            <p>The gap between a site that converts at 1% and one that converts at 5% often comes down to design decisions most people never notice.</p>
+            <div class="ds-compare">
+                <div class="ds-compare-card bad">
+                    <h3>Poor Design</h3>
+                    <ul>
+                        <li>Cluttered layouts with no visual hierarchy</li>
+                        <li>Inconsistent fonts, colours, and spacing</li>
+                        <li>Generic stock photos that feel impersonal</li>
+                        <li>Walls of text with no scanning structure</li>
+                        <li>Slow load times from unoptimised assets</li>
+                        <li>Hidden or unclear calls-to-action</li>
+                        <li>Not tested on mobile devices</li>
+                    </ul>
+                </div>
+                <div class="ds-compare-card good">
+                    <h3>Great Design</h3>
+                    <ul>
+                        <li>Clean layouts with intentional whitespace</li>
+                        <li>A coherent design system with strict tokens</li>
+                        <li>Custom visuals that reflect the brand</li>
+                        <li>Scannable content with clear headings</li>
+                        <li>Optimised images and lazy loading</li>
+                        <li>Bold, strategically placed CTAs</li>
+                        <li>Mobile-first responsive design</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6: Tools we use -->
+        <div class="ds-section">
+            <div class="ds-section-label">Our Toolkit</div>
+            <h2>Tools behind the craft</h2>
+            <div class="ds-cols">
+                <div>
+                    <p><strong style="color:var(--white)">Figma</strong> is our primary design tool — collaborative, component-based, and built for modern product design. Every project gets a shared Figma file so you can follow progress in real time.</p>
+                    <p><strong style="color:var(--white)">Design Systems</strong> — we build reusable component libraries with design tokens for colour, typography, spacing, and elevation. This ensures consistency across dozens of screens.</p>
+                    <p><strong style="color:var(--white)">Motion &amp; Interaction</strong> — subtle animations created with Framer Motion and CSS transitions bring interfaces to life without sacrificing performance. Every animation has a purpose: guide attention, provide feedback, or create delight.</p>
+                </div>
+                <div class="ds-visual">
+                    <svg viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="300" rx="18" fill="#111"/>
+                        <!-- Figma-style design symbols -->
+                        <rect x="40" y="40" width="140" height="80" rx="8" fill="none" stroke="#2997ff" stroke-width="1" opacity=".4"/>
+                        <rect x="48" y="52" width="80" height="8" rx="4" fill="#2997ff" opacity=".6"/>
+                        <rect x="48" y="68" width="120" height="4" rx="2" fill="#424245"/>
+                        <rect x="48" y="78" width="100" height="4" rx="2" fill="#424245"/>
+                        <rect x="48" y="92" width="60" height="20" rx="10" fill="#2997ff" opacity=".8"/>
+                        <text x="60" y="106" fill="#fff" font-size="8" font-family="Inter,sans-serif">Get started</text>
+                        <!-- Colour swatches -->
+                        <circle cx="230" cy="70" r="18" fill="#2997ff"/>
+                        <circle cx="275" cy="70" r="18" fill="#1d1d1f"/>
+                        <circle cx="320" cy="70" r="18" fill="#f5f5f7"/>
+                        <circle cx="365" cy="70" r="18" fill="none" stroke="#424245" stroke-width="1"/>
+                        <text x="358" y="74" fill="#424245" font-size="10" font-family="Inter,sans-serif">+</text>
+                        <!-- Typography preview -->
+                        <text x="220" y="130" fill="#fff" font-size="18" font-weight="700" font-family="Inter,sans-serif">Aa</text>
+                        <text x="260" y="130" fill="#6e6e73" font-size="12" font-family="Inter,sans-serif">Inter · 300–800</text>
+                        <rect x="220" y="145" width="160" height="1" fill="#2c2c2e"/>
+                        <text x="220" y="165" fill="#86868b" font-size="10" font-family="Inter,sans-serif">H1 — 56px / 700</text>
+                        <text x="220" y="182" fill="#86868b" font-size="10" font-family="Inter,sans-serif">Body — 16px / 400</text>
+                        <text x="220" y="199" fill="#86868b" font-size="10" font-family="Inter,sans-serif">Caption — 12px / 500</text>
+                        <!-- Component blocks -->
+                        <rect x="40" y="150" width="160" height="120" rx="8" fill="none" stroke="#2c2c2e" stroke-width="1"/>
+                        <rect x="52" y="162" width="136" height="60" rx="6" fill="#1d1d1f"/>
+                        <rect x="62" y="172" width="80" height="6" rx="3" fill="#424245"/>
+                        <rect x="62" y="184" width="110" height="4" rx="2" fill="#2c2c2e"/>
+                        <rect x="62" y="194" width="95" height="4" rx="2" fill="#2c2c2e"/>
+                        <rect x="52" y="234" width="56" height="24" rx="12" fill="#2997ff" opacity=".8"/>
+                        <rect x="116" y="234" width="56" height="24" rx="12" fill="none" stroke="#424245" stroke-width="1"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="ds-cta-block">
+            <h2>Ready for design that <span class="text-grad">delivers?</span></h2>
+            <p>Tell us about your project and we'll show you what world-class design looks like for your business.</p>
+            <a href="/#contact" class="ds-cta-btn">Start a project <span>&#8250;</span></a>
+        </div>
+
+    </div>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
+        });
+        const menuBtn = document.getElementById('menuBtn');
+        const ghLinks = document.getElementById('ghLinks');
+        if (menuBtn) {
+            menuBtn.addEventListener('click', function() {
+                ghLinks.classList.toggle('open');
+                menuBtn.classList.toggle('open');
+            });
+        }
+    </script>
+
+    <a href="https://wa.me/447921051871" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat on WhatsApp">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span>Chat with us</span>
+    </a>
+</body>
+</html>
