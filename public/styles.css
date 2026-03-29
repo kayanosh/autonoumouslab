@@ -140,7 +140,7 @@ a{color:inherit;text-decoration:none}ul{list-style:none}.hide-sm{display:inline}
 /* Gradient shimmer on hero headline */
 @keyframes gradient-shift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 .text-grad{background:linear-gradient(90deg,#2997ff,#a855f7,#2997ff,#a855f7);background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradient-shift 6s ease infinite}
-.text-grad-dark{background:linear-gradient(90deg,#0071e3,#8b5cf6,#0071e3,#8b5cf6);background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradient-shift 6s ease infinite}
+.text-grad-dark{background:linear-gradient(90deg,#0071e3,#8b5cf6,#0071e3,#8b5cf6);background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradient-shift 6s ease infinite}.text-grad-dark .word{background:inherit;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
 /* Parallax data attribute */
 [data-parallax]{will-change:transform;transition:transform .1s linear}
