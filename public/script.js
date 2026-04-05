@@ -411,4 +411,50 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // Demo modal
+  const demoModal = document.getElementById('demoModal');
+  const openBtn = document.getElementById('openDemoModal');
+  const closeBtn = document.getElementById('closeDemoModal');
+  const demoForm = document.getElementById('demoForm');
+  const demoSuccess = document.getElementById('demoSuccess');
+
+  if (openBtn && demoModal) {
+    openBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      demoModal.classList.add('active');
+    });
+    closeBtn.addEventListener('click', () => demoModal.classList.remove('active'));
+    demoModal.addEventListener('click', (e) => {
+      if (e.target === demoModal) demoModal.classList.remove('active');
+    });
+  }
+
+  if (demoForm) {
+    demoForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fd = new FormData(demoForm);
+      const body = [
+        'Name: ' + (fd.get('demoName') || ''),
+        'Email: ' + (fd.get('demoEmail') || ''),
+        'Phone: ' + (fd.get('demoPhone') || ''),
+        'Business: ' + (fd.get('demoBusiness') || ''),
+        'Details: ' + (fd.get('demoDetails') || '')
+      ].join('\n');
+
+      fetch('https://formsubmit.co/ajax/admin@mathrix.co.uk', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name: fd.get('demoName'),
+          email: fd.get('demoEmail'),
+          _subject: 'Free Demo Request from ' + fd.get('demoName'),
+          message: body
+        })
+      }).catch(() => {});
+
+      demoForm.style.display = 'none';
+      demoSuccess.style.display = 'block';
+    });
+  }
 });

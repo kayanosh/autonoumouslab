@@ -58,6 +58,11 @@
                     <span>30-day free post-launch support</span>
                 </div>
             </div>
+            <div class="hero-demo-banner" data-animate>
+                <div class="demo-banner-badge">FREE</div>
+                <p>We'll create a <strong>free demo</strong> of your website before any commitments.</p>
+                <a href="#" class="hero-btn hero-btn-primary hero-btn-sm" id="openDemoModal">Get your free demo</a>
+            </div>
         </div>
         <div class="ribbon-media hero-media" data-animate>
             <div class="hero-devices" data-parallax="-0.05">
@@ -508,5 +513,27 @@
     </a>
 
     <script src="/script.js"></script>
+
+    <!-- Demo Request Modal -->
+    <div class="demo-modal-overlay" id="demoModal">
+        <div class="demo-modal">
+            <button class="demo-modal-close" id="closeDemoModal" aria-label="Close">&times;</button>
+            <h3>Get your free website demo</h3>
+            <p>Tell us a bit about your project and we'll create a free mockup — no commitments, no catch.</p>
+            <form id="demoForm">
+                <input type="text" name="demoName" placeholder="Full Name" required>
+                <input type="email" name="demoEmail" placeholder="Email Address" required>
+                <input type="tel" name="demoPhone" placeholder="Mobile Number" required>
+                <input type="text" name="demoBusiness" placeholder="Business / Project Name">
+                <textarea name="demoDetails" rows="3" placeholder="Briefly describe what you need (e.g. restaurant site, portfolio, e-commerce...)"></textarea>
+                <button type="submit" class="hero-btn hero-btn-primary" style="width:100%">Request my free demo</button>
+            </form>
+            <div class="demo-success" id="demoSuccess">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#2997ff"/><path d="M7 12l3 3 7-7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <h4>Demo requested!</h4>
+                <p>We'll be in touch within 24 hours with your free mockup.</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
