@@ -36,89 +36,92 @@
     </nav>
 
     <section class="ribbon ribbon-dark ribbon-hero section-fade">
-        <div class="ribbon-body">
-            <h1 class="ribbon-eyebrow" data-animate>AutoLabs</h1>
-            <h2 class="ribbon-headline headline-xl word-reveal">Apps & Websites.<br>Built to Perfection.</h2>
-            <p class="ribbon-copy" data-animate>We design and develop digital products that users love<br class="hide-sm">and businesses depend on.</p>
-            <div class="ribbon-ctas" data-animate>
-                <a href="#contact" class="hero-btn hero-btn-primary">Start a project</a>
-                <a href="/websites.html" class="hero-btn hero-btn-secondary">See our work</a>
-            </div>
-            <div class="trust-badges" data-stagger>
-                <div class="trust-badge">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FFD700"/></svg>
-                    <span>Rated 4.9+</span>
+        <div class="hero-split">
+            <!-- LEFT COLUMN: Copy + Inline Form -->
+            <div class="hero-copy-col">
+                <div class="hero-free-tag" data-animate>
+                    <span class="free-tag-dot"></span>
+                    100% free &middot; No commitment &middot; No strings attached
                 </div>
-                <div class="trust-badge">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="#2997ff"/><path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    <span>SEO Optimised</span>
-                </div>
-                <div class="trust-badge">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#2997ff"/><path d="M12 6v6l4 2" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    <span>30-day free post-launch support</span>
-                </div>
-            </div>
-            <div class="hero-demo-banner" data-animate>
-                <div class="demo-banner-badge">FREE</div>
-                <p>We'll create a <strong>free demo</strong> of your website before any commitments.</p>
-                <a href="#" class="hero-btn hero-btn-primary hero-btn-sm" id="openDemoModal">Get your free demo</a>
-            </div>
-        </div>
-        <div class="ribbon-media hero-media" data-animate>
-            <div class="hero-devices" data-parallax="-0.05">
-                <div class="device-laptop">
-                    <div class="laptop-screen">
-                        <!-- Phase 1: Code editor -->
-                        <div class="screen-code" id="laptopCode">
-                            <div class="code-titlebar">
-                                <span class="code-dot red"></span><span class="code-dot yellow"></span><span class="code-dot green"></span>
-                                <span class="code-filename">App.tsx</span>
-                            </div>
-                            <div class="code-gutter-wrap">
-                                <div class="code-gutter" id="laptopGutter"></div>
-                                <pre class="code-body" id="laptopCodeBody"></pre>
-                            </div>
-                            <div class="code-cursor" id="laptopCursor"></div>
+                <h1 class="ribbon-headline headline-xl word-reveal">We'll Build Your Website Demo — <span class="text-grad">For Free</span></h1>
+                <p class="ribbon-copy" data-animate>See exactly what your website or app will look like before spending a penny. Love it? We build it. If not, keep the design — no pressure.</p>
+
+                <!-- Inline Hero Form -->
+                <div class="hero-form-card" data-animate>
+                    <form id="heroForm" class="hero-form" novalidate>
+                        <div class="hero-form-field">
+                            <input type="text" name="heroName" id="heroName" placeholder="Full Name" required autocomplete="name">
                         </div>
-                        <!-- Phase 2: Finished app UI -->
-                        <div class="screen-app" id="laptopApp">
-                            <div class="app-nav"><div class="app-logo"></div><div class="app-nav-links"><span></span><span></span><span></span></div><div class="app-nav-btn"></div></div>
-                            <div class="app-hero-section">
-                                <div class="app-badge"></div>
-                                <div class="app-title"></div>
-                                <div class="app-subtitle"></div>
-                                <div class="app-cta-row"><div class="app-cta-primary"></div><div class="app-cta-secondary"></div></div>
-                            </div>
-                            <div class="app-cards-section">
-                                <div class="app-card"><div class="app-card-icon"></div><div class="app-card-text"><div class="app-card-h"></div><div class="app-card-p"></div></div></div>
-                                <div class="app-card"><div class="app-card-icon"></div><div class="app-card-text"><div class="app-card-h"></div><div class="app-card-p"></div></div></div>
-                                <div class="app-card"><div class="app-card-icon"></div><div class="app-card-text"><div class="app-card-h"></div><div class="app-card-p"></div></div></div>
-                            </div>
+                        <div class="hero-form-field">
+                            <input type="email" name="heroEmail" id="heroEmail" placeholder="Email Address" required autocomplete="email">
                         </div>
+                        <div class="hero-form-field">
+                            <input type="tel" name="heroPhone" id="heroPhone" placeholder="Phone Number" required autocomplete="tel">
+                        </div>
+                        <button type="submit" class="hero-form-submit">
+                            <span class="btn-text">Get My Free Demo &rarr;</span>
+                            <span class="btn-spinner" style="display:none"><svg class="spin-svg" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="31.4 31.4" stroke-linecap="round"/></svg>Sending...</span>
+                        </button>
+                        <p class="hero-form-fine">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" stroke="#6e6e73" stroke-width="2"/><path d="M7 11V7a5 5 0 0110 0v4" stroke="#6e6e73" stroke-width="2" stroke-linecap="round"/></svg>
+                            No payment required &middot; No spam &middot; Response within 24 hours
+                        </p>
+                    </form>
+                    <div class="hero-form-success" id="heroFormSuccess" style="display:none">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#2997ff"/><path d="M7 12l3 3 7-7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <h4>You're in! Demo requested.</h4>
+                        <p>We'll be in touch within 24 hours with your free mockup.</p>
                     </div>
-                    <div class="laptop-bottom"></div>
                 </div>
-                <div class="device-phone">
-                    <div class="phone-notch"></div>
-                    <div class="phone-screen">
-                        <!-- Phase 1: Code editor (mobile) -->
-                        <div class="screen-code phone-code" id="phoneCode">
-                            <div class="code-titlebar sm">
-                                <span class="code-dot red sm"></span><span class="code-dot yellow sm"></span><span class="code-dot green sm"></span>
-                                <span class="code-filename sm">index.tsx</span>
+
+                <div class="hero-social-proof" data-stagger>
+                    <div class="hero-proof-item">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="#FFD700"/></svg>
+                        <span><strong>4.9</strong> rated</span>
+                    </div>
+                    <div class="hero-proof-item">
+                        <span><strong>200+</strong> websites built</span>
+                    </div>
+                    <div class="hero-proof-item">
+                        <span><strong>30-day</strong> free support</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: Device Mockups (start in finished app state) -->
+            <div class="hero-visual-col" data-animate>
+                <div class="hero-devices" data-parallax="-0.05">
+                    <div class="device-laptop">
+                        <div class="laptop-screen">
+                            <div class="screen-app fade-in" id="laptopApp">
+                                <div class="app-nav"><div class="app-logo"></div><div class="app-nav-links"><span></span><span></span><span></span></div><div class="app-nav-btn"></div></div>
+                                <div class="app-hero-section">
+                                    <div class="app-badge"></div>
+                                    <div class="app-title"></div>
+                                    <div class="app-subtitle"></div>
+                                    <div class="app-cta-row"><div class="app-cta-primary"></div><div class="app-cta-secondary"></div></div>
+                                </div>
+                                <div class="app-cards-section">
+                                    <div class="app-card"><div class="app-card-icon"></div><div class="app-card-text"><div class="app-card-h"></div><div class="app-card-p"></div></div></div>
+                                    <div class="app-card"><div class="app-card-icon"></div><div class="app-card-text"><div class="app-card-h"></div><div class="app-card-p"></div></div></div>
+                                    <div class="app-card"><div class="app-card-icon"></div><div class="app-card-text"><div class="app-card-h"></div><div class="app-card-p"></div></div></div>
+                                </div>
                             </div>
-                            <pre class="code-body sm" id="phoneCodeBody"></pre>
-                            <div class="code-cursor sm" id="phoneCursor"></div>
                         </div>
-                        <!-- Phase 2: Mobile app UI -->
-                        <div class="screen-app phone-app" id="phoneApp">
-                            <div class="ph-app-status"><span></span><span></span></div>
-                            <div class="ph-app-avatar"></div>
-                            <div class="ph-app-greeting"></div>
-                            <div class="ph-app-search"></div>
-                            <div class="ph-app-cards-row"><div class="ph-app-minicard"></div><div class="ph-app-minicard"></div></div>
-                            <div class="ph-app-list"><div class="ph-app-list-item"></div><div class="ph-app-list-item"></div><div class="ph-app-list-item"></div></div>
-                            <div class="ph-app-tab-bar"><span></span><span></span><span class="active"></span><span></span></div>
+                        <div class="laptop-bottom"></div>
+                    </div>
+                    <div class="device-phone">
+                        <div class="phone-notch"></div>
+                        <div class="phone-screen">
+                            <div class="screen-app phone-app fade-in" id="phoneApp">
+                                <div class="ph-app-status"><span></span><span></span></div>
+                                <div class="ph-app-avatar"></div>
+                                <div class="ph-app-greeting"></div>
+                                <div class="ph-app-search"></div>
+                                <div class="ph-app-cards-row"><div class="ph-app-minicard"></div><div class="ph-app-minicard"></div></div>
+                                <div class="ph-app-list"><div class="ph-app-list-item"></div><div class="ph-app-list-item"></div><div class="ph-app-list-item"></div></div>
+                                <div class="ph-app-tab-bar"><span></span><span></span><span class="active"></span><span></span></div>
+                            </div>
                         </div>
                     </div>
                 </div>

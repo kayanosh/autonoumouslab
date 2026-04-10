@@ -111,185 +111,63 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ========================================================
-  // HERO CODE → APP MORPH ANIMATION
+  // HERO INLINE FORM HANDLER
   // ========================================================
-  const laptopCodeLines = [
-    '<span class="ck">import</span> <span class="cv">React</span> <span class="ck">from</span> <span class="cs">"react"</span>;',
-    '<span class="ck">import</span> { <span class="cv">motion</span> } <span class="ck">from</span> <span class="cs">"framer-motion"</span>;',
-    '',
-    '<span class="ck">export default function</span> <span class="cf">App</span>() {',
-    '  <span class="ck">return</span> (',
-    '    &lt;<span class="ct">motion.div</span>',
-    '      <span class="ca">initial</span>={{ <span class="ca">opacity</span>: <span class="cn">0</span> }}',
-    '      <span class="ca">animate</span>={{ <span class="ca">opacity</span>: <span class="cn">1</span> }}',
-    '      <span class="ca">className</span>=<span class="cs">"app-container"</span>',
-    '    &gt;',
-    '      &lt;<span class="ct">Navbar</span> /&gt;',
-    '      &lt;<span class="ct">Hero</span>',
-    '        <span class="ca">title</span>=<span class="cs">"Build amazing"</span>',
-    '        <span class="ca">cta</span>=<span class="cs">"Get started"</span>',
-    '      /&gt;',
-    '      &lt;<span class="ct">Features</span> <span class="ca">columns</span>={<span class="cn">3</span>} /&gt;',
-    '    &lt;/<span class="ct">motion.div</span>&gt;',
-    '  );',
-    '}',
-  ];
+  const heroForm = document.getElementById('heroForm');
+  const heroFormSuccess = document.getElementById('heroFormSuccess');
 
-  const phoneCodeLines = [
-    '<span class="ck">const</span> <span class="cf">Home</span> = () =&gt; {',
-    '  <span class="ck">return</span> (',
-    '    &lt;<span class="ct">View</span> <span class="ca">style</span>={<span class="cv">styles</span>}&gt;',
-    '      &lt;<span class="ct">Avatar</span> /&gt;',
-    '      &lt;<span class="ct">Search</span>',
-    '        <span class="ca">placeholder</span>=<span class="cs">"Search"</span>',
-    '      /&gt;',
-    '      &lt;<span class="ct">CardRow</span> /&gt;',
-    '      &lt;<span class="ct">List</span>',
-    '        <span class="ca">data</span>={<span class="cv">items</span>}',
-    '      /&gt;',
-    '      &lt;<span class="ct">TabBar</span> /&gt;',
-    '    &lt;/<span class="ct">View</span>&gt;',
-    '  );',
-    '};',
-  ];
+  if (heroForm) {
+    heroForm.addEventListener('submit', (e) => {
+      e.preventDefault();
 
-  function runHeroAnimation() {
-    const laptopBody = document.getElementById('laptopCodeBody');
-    const phoneBody = document.getElementById('phoneCodeBody');
-    const laptopGutter = document.getElementById('laptopGutter');
-    const laptopCursor = document.getElementById('laptopCursor');
-    const phoneCursor = document.getElementById('phoneCursor');
-    const laptopCodeEl = document.getElementById('laptopCode');
-    const laptopAppEl = document.getElementById('laptopApp');
-    const phoneCodeEl = document.getElementById('phoneCode');
-    const phoneAppEl = document.getElementById('phoneApp');
+      // Clear previous errors
+      heroForm.querySelectorAll('input.error').forEach((el) => el.classList.remove('error'));
 
-    if (!laptopBody || !phoneBody) return;
+      const name = heroForm.heroName.value.trim();
+      const email = heroForm.heroEmail.value.trim();
+      const phone = heroForm.heroPhone.value.trim();
+      let ok = true;
 
-    let laptopLineIdx = 0;
-    let phoneLineIdx = 0;
-    let laptopCharIdx = 0;
-    let phoneCharIdx = 0;
-    let laptopCurrentHTML = '';
-    let phoneCurrentHTML = '';
+      if (!name) { heroForm.heroName.classList.add('error'); ok = false; }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { heroForm.heroEmail.classList.add('error'); ok = false; }
+      if (!phone) { heroForm.heroPhone.classList.add('error'); ok = false; }
+      if (!ok) return;
 
-    // Type a line character by character (uses innerHTML for syntax colors)
-    function typeLine(lines, lineIdx, charIdx, bodyEl, gutterEl, cursorEl, isPhone, cb) {
-      if (lineIdx >= lines.length) { cb(); return; }
-      const line = lines[lineIdx];
-      const plainText = line.replace(/<[^>]+>/g, '');
+      const btn = heroForm.querySelector('.hero-form-submit');
+      btn.querySelector('.btn-text').style.display = 'none';
+      btn.querySelector('.btn-spinner').style.display = 'flex';
+      btn.disabled = true;
 
-      if (charIdx === 0 && gutterEl) {
-        const num = document.createElement('span');
-        num.textContent = lineIdx + 1;
-        gutterEl.appendChild(num);
-      }
+      const body = [
+        'Name: ' + name,
+        'Email: ' + email,
+        'Phone: ' + phone
+      ].join('\n');
 
-      if (charIdx >= plainText.length) {
-        // Finish this line
-        if (isPhone) {
-          phoneCurrentHTML += line + '\n';
-          bodyEl.innerHTML = phoneCurrentHTML;
-        } else {
-          laptopCurrentHTML += line + '\n';
-          bodyEl.innerHTML = laptopCurrentHTML;
-        }
-        // Move cursor
-        if (cursorEl) {
-          const lineH = isPhone ? 9 : 16;
-          const topOffset = isPhone ? 24 : 48;
-          cursorEl.style.top = topOffset + (lineIdx + 1) * lineH + 'px';
-        }
-        setTimeout(() => typeLine(lines, lineIdx + 1, 0, bodyEl, gutterEl, cursorEl, isPhone, cb), 40 + Math.random() * 30);
-        return;
-      }
+      fetch('https://formsubmit.co/ajax/admin@mathrix.co.uk', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          phone: phone,
+          _subject: 'Free Demo Request from ' + name,
+          message: body
+        })
+      }).catch(() => {});
 
-      // Build partial line: show full syntax-highlighted HTML up to charIdx
-      let shown = 0;
-      let partialHTML = '';
-      let inTag = false;
-      for (let i = 0; i < line.length; i++) {
-        if (line[i] === '<') { inTag = true; partialHTML += line[i]; continue; }
-        if (line[i] === '>') { inTag = false; partialHTML += line[i]; continue; }
-        if (inTag) { partialHTML += line[i]; continue; }
-        if (shown < charIdx + 1) {
-          partialHTML += line[i];
-          shown++;
-        }
-      }
-
-      const allPrev = isPhone ? phoneCurrentHTML : laptopCurrentHTML;
-      bodyEl.innerHTML = allPrev + partialHTML;
-
-      // Move cursor horizontally
-      if (cursorEl) {
-        const charW = isPhone ? 3.3 : 6;
-        const leftOffset = isPhone ? 10 : 40;
-        const lineH = isPhone ? 9 : 16;
-        const topOffset = isPhone ? 24 : 48;
-        cursorEl.style.left = leftOffset + (charIdx + 1) * charW + 'px';
-        cursorEl.style.top = topOffset + lineIdx * lineH + 'px';
-      }
-
-      const speed = 18 + Math.random() * 22;
-      setTimeout(() => typeLine(lines, lineIdx, charIdx + 1, bodyEl, gutterEl, cursorEl, isPhone, cb), speed);
-    }
-
-    // Start both typing in parallel
-    let laptopDone = false;
-    let phoneDone = false;
-
-    function checkMorph() {
-      if (laptopDone && phoneDone) {
-        // Flash effect then morph
-        setTimeout(() => {
-          // Hide cursors
-          if (laptopCursor) laptopCursor.style.display = 'none';
-          if (phoneCursor) phoneCursor.style.display = 'none';
-
-          // Brief white flash
-          laptopCodeEl.style.filter = 'brightness(1.8)';
-          phoneCodeEl.style.filter = 'brightness(1.8)';
-
-          setTimeout(() => {
-            laptopCodeEl.style.filter = '';
-            phoneCodeEl.style.filter = '';
-            // Cross-fade: code out, app in
-            laptopCodeEl.classList.add('fade-out');
-            phoneCodeEl.classList.add('fade-out');
-            laptopAppEl.classList.add('fade-in');
-            phoneAppEl.classList.add('fade-in');
-          }, 300);
-        }, 600);
-      }
-    }
-
-    typeLine(laptopCodeLines, 0, 0, laptopBody, laptopGutter, laptopCursor, false, () => {
-      laptopDone = true;
-      checkMorph();
+      setTimeout(() => {
+        heroForm.style.display = 'none';
+        heroFormSuccess.style.display = 'block';
+      }, 1200);
     });
-
-    setTimeout(() => {
-      typeLine(phoneCodeLines, 0, 0, phoneBody, null, phoneCursor, true, () => {
-        phoneDone = true;
-        checkMorph();
-      });
-    }, 400); // Phone starts slightly after laptop
   }
 
-  // Start hero animation when hero is visible
-  const heroDevices = document.querySelector('.hero-devices');
-  if (heroDevices) {
-    const heroObs = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setTimeout(runHeroAnimation, 500);
-          heroObs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.3 });
-    heroObs.observe(heroDevices);
-  }
+  // ========================================================
+  // HERO DEVICE MOCKUPS — Start in finished app state (no code animation)
+  // ========================================================
+  // The devices now start with .fade-in class in the HTML, so the app UI is
+  // visible immediately. No typing animation needed.
 
   const form = document.getElementById('contactForm');
   const success = document.getElementById('formSuccess');
