@@ -243,3 +243,146 @@ a{color:inherit;text-decoration:none}ul{list-style:none}.hide-sm{display:inline}
 
 @media (max-width:734px){.ribbon-body{padding:64px 22px 0}.ribbon-media{padding-bottom:56px}.phone-screen{min-height:160px}.app-hero-section{padding:12px 10px 8px}.app-title{width:140px;height:10px}.app-subtitle{width:100px;height:6px}.app-cta-primary,.app-cta-secondary{height:18px;width:56px}.app-card{padding:8px 6px}.app-card-icon{width:18px;height:18px}.dual-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}.contact-form{padding:28px}.stats-bar{gap:24px}.portfolio-grid,.testi-row,.price-row{flex-direction:column;align-items:center}.portfolio-card,.testi-card,.price-card{max-width:100%}.embedded-demo-wrap{margin:28px auto 64px}.embedded-demo-frame{height:760px;border-radius:16px}.footer-cols{grid-template-columns:1fr 1fr;gap:20px}.footer-base{flex-direction:column;align-items:flex-start}.ribbon-ctas{flex-direction:column;gap:12px}.trust-badges{gap:12px}.trust-badge{padding:6px 14px}.trust-badge span{font-size:12px}.tech-grid{gap:10px}.tech-item{min-width:100px;padding:20px 16px}.pain-grid{flex-direction:column;align-items:center}.pain-card{max-width:100%}.process-grid,.steps-grid{flex-direction:column;align-items:center}.process-step,.step-card{max-width:100%}.compare-table td:first-child{white-space:normal}}
 @media (max-width:480px){.phone-notch{height:10px}.laptop-screen{border-radius:8px 8px 0 0;padding:8px}.stat-num{font-size:36px}.dual-headline{font-size:28px}}
+
+/* =====================================================
+   LIGHT THEME OVERRIDE
+   Re-skins the originally dark layout to a light palette.
+   Overrides win by source order; original rules untouched.
+   ===================================================== */
+body{background:var(--white);color:var(--near-black)}
+
+/* Header */
+.globalheader{background:rgba(255,255,255,.7);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px)}
+.globalheader.scrolled{background:rgba(255,255,255,.92);box-shadow:0 1px 0 rgba(0,0,0,.08)}
+.gh-logo{color:var(--near-black)}.gh-logo:hover{color:var(--black)}
+.gh-links a{color:var(--gray-600)}.gh-links a:hover{color:var(--near-black)}
+.gh-menu-icon span{background:var(--near-black)}
+@media (max-width:833px){.gh-links{background:rgba(255,255,255,.97)}.gh-links a{color:var(--near-black);border-bottom:1px solid rgba(0,0,0,.08)}}
+
+/* Logo marquee */
+.logo-marquee{background:var(--gray-100);border-top:1px solid var(--gray-200);border-bottom:1px solid var(--gray-200)}
+.logo-marquee::before{background:linear-gradient(to right,var(--gray-100),transparent)}
+.logo-marquee::after{background:linear-gradient(to left,var(--gray-100),transparent)}
+.marquee-item img{filter:brightness(0)}
+.marquee-item img.marquee-favicon{filter:none}
+.marquee-item span{color:var(--gray-600)}
+
+/* Ribbons */
+.ribbon-dark{background:var(--white);color:var(--near-black)}
+.ribbon-light{background:var(--gray-100);color:var(--near-black)}
+.ribbon-border{border-top:1px solid rgba(0,0,0,.08)}
+.ribbon-eyebrow{color:var(--gray-500)}
+.ribbon-hero .ribbon-eyebrow{color:var(--gray-600)}
+.ribbon-headline{color:var(--near-black)}
+.ribbon-copy{color:var(--gray-600)}
+
+/* Section fade dividers */
+.section-fade::after{background:linear-gradient(to bottom,transparent,var(--white))}
+.section-fade-light::after{background:linear-gradient(to bottom,transparent,var(--gray-100))}
+
+/* Hero form */
+.hero-free-tag{background:rgba(41,151,255,.08);border-color:rgba(41,151,255,.25)}
+.hero-form-card{background:var(--white);border:1px solid var(--gray-200);box-shadow:0 8px 32px rgba(0,0,0,.06)}
+.hero-form-card::before{background:linear-gradient(135deg,rgba(41,151,255,.25),rgba(168,85,247,.12),transparent)}
+.hero-form-field input{background:var(--gray-100);border:1px solid var(--gray-200);color:var(--near-black)}
+.hero-form-field input::placeholder{color:var(--gray-500)}
+.hero-form-fine{color:var(--gray-500)}
+.hero-form-success p{color:var(--gray-600)}
+.hero-proof-item{color:var(--gray-600)}
+.hero-proof-item strong{color:var(--near-black)}
+.hero-btn-secondary{background:rgba(0,0,0,.06);color:var(--near-black);backdrop-filter:none}
+.hero-btn-secondary:hover{background:rgba(0,0,0,.12)}
+
+/* Trust badges */
+.trust-badge{background:rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.08)}
+.trust-badge span{color:var(--gray-600)}
+
+/* Dual section */
+.dual-card{background:var(--gray-100)}
+.dual-copy{color:var(--gray-600)}
+.orbit-ring{border-color:rgba(41,151,255,.25)}
+.orbit-ring.mid{border-color:rgba(41,151,255,.4)}
+
+/* Stats */
+.stat-label{color:var(--gray-600)}
+
+/* Tech grid */
+.tech-item{background:var(--white);border:1px solid var(--gray-200);box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.tech-item:hover{border-color:rgba(41,151,255,.4);box-shadow:0 8px 30px rgba(41,151,255,.12)}
+.tech-item span{color:var(--gray-700)}
+
+/* Pain cards already light — no change needed */
+
+/* Process */
+.process-step p{color:var(--gray-600)}
+
+/* Comparison table */
+.compare-table{background:var(--white);border:1px solid var(--gray-200)}
+.compare-table thead{background:rgba(41,151,255,.08)}
+.compare-table td{color:var(--gray-700);border-top:1px solid rgba(0,0,0,.06)}
+.compare-table tr:hover td{background:rgba(41,151,255,.04)}
+.compare-table td:first-child{color:var(--near-black)}
+
+/* Steps */
+.step-card{background:var(--white);border:1px solid var(--gray-200);box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.step-card:hover{border-color:rgba(41,151,255,.3);box-shadow:0 12px 40px rgba(41,151,255,.1)}
+.step-card p{color:var(--gray-600)}
+
+/* Portfolio */
+.portfolio-card{background:var(--gray-100)}
+.portfolio-card:hover{box-shadow:0 20px 60px rgba(0,0,0,.08)}
+.portfolio-card h4{color:var(--near-black)}
+.portfolio-card p{color:var(--gray-600)}
+
+/* Testimonials */
+.testi-card{background:var(--white);border:1px solid var(--gray-200);box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.testi-card:hover{border-color:rgba(0,0,0,.15);box-shadow:0 16px 48px rgba(0,0,0,.08)}
+.testi-card p{color:var(--gray-700)}
+.testi-author strong{color:var(--near-black)}
+.testi-author span{color:var(--gray-500)}
+
+/* Pricing — already light, ensure popular border remains */
+
+/* Contact form */
+.ribbon-cta{border-top:1px solid rgba(0,0,0,.08)}
+.contact-form{background:var(--gray-100);border:1px solid var(--gray-200)}
+.form-group label{color:var(--gray-600)}
+.form-group input,.form-group select,.form-group textarea{background:var(--white);border:1px solid var(--gray-200);color:var(--near-black)}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--gray-500)}
+.form-group select{background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%236e6e73' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.form-fine{color:var(--gray-500)}
+.form-success{background:var(--gray-100);border:1px solid var(--gray-200)}
+.form-success p{color:var(--gray-600)}
+
+/* FAQ */
+.faq-item{border-bottom:1px solid var(--gray-200)}
+.faq-item:first-child{border-top:1px solid var(--gray-200)}
+.faq-question{color:var(--near-black)}
+.faq-answer p{color:var(--gray-600)}
+
+/* Embedded demo */
+.embedded-demo-frame{border:1px solid var(--gray-200);background:var(--white)}
+
+/* Demo modal */
+.demo-modal-overlay{background:rgba(0,0,0,.4)}
+.demo-modal{background:var(--white);border:1px solid var(--gray-200);box-shadow:0 24px 80px rgba(0,0,0,.18)}
+.demo-modal h3{color:var(--near-black)}
+.demo-modal>p{color:var(--gray-600)}
+.demo-modal-close{color:var(--gray-500)}
+.demo-modal-close:hover{color:var(--near-black)}
+#demoForm input,#demoForm textarea{background:var(--gray-100);border:1px solid var(--gray-200);color:var(--near-black)}
+#demoForm input:focus,#demoForm textarea:focus{border-color:var(--blue)}
+#demoForm input::placeholder,#demoForm textarea::placeholder{color:var(--gray-500)}
+.demo-success p{color:var(--gray-600)}
+
+/* Footer */
+.site-footer{border-top:1px solid rgba(0,0,0,.08);background:var(--white)}
+.footer-cols{border-bottom:1px solid rgba(0,0,0,.08)}
+.footer-col h5{color:var(--near-black)}
+.footer-col a{color:var(--gray-600)}
+.footer-col a:hover{color:var(--near-black)}
+.footer-base span,.footer-legal a{color:var(--gray-500)}
+.footer-legal a:hover{color:var(--near-black)}
+
+/* Note: laptop/phone code editor mockups intentionally remain dark
+   to preserve the IDE / dark-mode app look. */
