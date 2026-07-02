@@ -262,15 +262,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function scrollToHash(hash, behavior = 'smooth') {
+    if (!hash || hash === '#') return false;
+    const target = document.querySelector(hash);
+    if (!target) return false;
+    target.scrollIntoView({ behavior, block: 'start' });
+    return true;
+  }
+
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener('click', (e) => {
-      const t = document.querySelector(a.getAttribute('href'));
-      if (t) {
-        e.preventDefault();
-        t.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      const hash = a.getAttribute('href');
+      if (!hash || hash === '#') return;
+      if (scrollToHash(hash)) e.preventDefault();
     });
   });
+
+  if (window.location.hash) {
+    requestAnimationFrame(() => scrollToHash(window.location.hash, 'auto'));
+  }
 
   // FAQ Accordion
   document.querySelectorAll('.faq-question').forEach((btn) => {
