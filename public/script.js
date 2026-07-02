@@ -335,4 +335,193 @@ document.addEventListener('DOMContentLoaded', () => {
       demoSuccess.style.display = 'block';
     });
   }
+
+  // ========================================================
+  // FREE WEBSITE AUDIT
+  // ========================================================
+  const auditForm = document.getElementById('auditForm');
+  const auditUrlInput = document.getElementById('auditUrl');
+  const auditSubmitBtn = document.getElementById('auditSubmitBtn');
+  const auditError = document.getElementById('auditError');
+  const auditResults = document.getElementById('auditResults');
+  const auditScoreRing = document.getElementById('auditScoreRing');
+  const auditScoreValue = document.getElementById('auditScoreValue');
+  const auditScoreHeadline = document.getElementById('auditScoreHeadline');
+  const auditScoreSummary = document.getElementById('auditScoreSummary');
+  const auditUrlDisplay = document.getElementById('auditUrlDisplay');
+  const auditPassList = document.getElementById('auditPassList');
+  const auditIssueList = document.getElementById('auditIssueList');
+  const auditImproveBtn = document.getElementById('auditImproveBtn');
+  const auditModal = document.getElementById('auditModal');
+  const closeAuditModal = document.getElementById('closeAuditModal');
+  const auditContactForm = document.getElementById('auditContactForm');
+  const auditContactSuccess = document.getElementById('auditContactSuccess');
+  const auditModalUrl = document.getElementById('auditModalUrl');
+  const auditModalMessage = document.getElementById('auditModalMessage');
+
+  let lastAuditResult = null;
+
+  function normalizeUrl(value) {
+    const trimmed = value.trim();
+    if (!trimmed) return '';
+    if (/^https?:\/\//i.test(trimmed)) return trimmed;
+    return 'https://' + trimmed;
+  }
+
+  function scoreClass(score) {
+    if (score >= 75) return 'score-good';
+    if (score >= 50) return 'score-warn';
+    return 'score-bad';
+  }
+
+  function scoreHeadline(score) {
+    if (score >= 75) return 'Looking good — a few tweaks could help';
+    if (score >= 50) return 'Room for improvement';
+    return 'Your site needs attention';
+  }
+
+  function renderAuditList(listEl, checks, emptyMessage) {
+    listEl.innerHTML = '';
+    if (checks.length === 0) {
+      const li = document.createElement('li');
+      li.className = 'pass';
+      li.textContent = emptyMessage;
+      listEl.appendChild(li);
+      return;
+    }
+    checks.forEach((check) => {
+      const li = document.createElement('li');
+      li.className = check.status;
+      li.innerHTML = '<strong>' + check.label + '</strong> — ' + check.message;
+      listEl.appendChild(li);
+    });
+  }
+
+  function renderAuditResults(result) {
+    lastAuditResult = result;
+    auditResults.hidden = false;
+    auditScoreValue.textContent = String(result.score);
+    auditScoreRing.className = 'audit-score-ring ' + scoreClass(result.score);
+    auditScoreHeadline.textContent = scoreHeadline(result.score);
+    auditScoreSummary.textContent = 'We checked ' + result.checks.length + ' SEO, performance, and mobile signals.';
+    auditUrlDisplay.textContent = result.url;
+
+    const passChecks = result.checks.filter((c) => c.status === 'pass');
+    const issueChecks = result.checks.filter((c) => c.status !== 'pass');
+
+    renderAuditList(auditPassList, passChecks, 'No passing checks yet.');
+    renderAuditList(
+      auditIssueList,
+      issueChecks,
+      issueChecks.length === 0 ? 'All checks passed — your site is in great shape.' : ''
+    );
+
+    auditResults.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function setAuditLoading(loading) {
+    const btnText = auditSubmitBtn.querySelector('.btn-text');
+    const btnSpinner = auditSubmitBtn.querySelector('.btn-spinner');
+    btnText.style.display = loading ? 'none' : 'inline';
+    btnSpinner.style.display = loading ? 'flex' : 'none';
+    auditSubmitBtn.disabled = loading;
+  }
+
+  if (auditForm) {
+    auditForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      auditError.textContent = '';
+      auditUrlInput.classList.remove('error');
+
+      const rawUrl = auditUrlInput.value.trim();
+      if (!rawUrl) {
+        auditUrlInput.classList.add('error');
+        auditError.textContent = 'Please enter your website URL.';
+        return;
+      }
+
+      const url = normalizeUrl(rawUrl);
+      setAuditLoading(true);
+
+      try {
+        const response = await fetch('/api/audit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url })
+        });
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Audit failed. Please try again.');
+        }
+
+        renderAuditResults(data);
+      } catch (err) {
+        auditError.textContent = err.message || 'Something went wrong. Please try again.';
+      } finally {
+        setAuditLoading(false);
+      }
+    });
+  }
+
+  function openAuditModal() {
+    if (!auditModal || !lastAuditResult) return;
+    auditModal.classList.add('active');
+    if (auditModalUrl) auditModalUrl.value = lastAuditResult.url;
+    if (auditModalMessage) auditModalMessage.value = lastAuditResult.summary;
+    if (auditContactForm) auditContactForm.style.display = 'flex';
+    if (auditContactSuccess) auditContactSuccess.style.display = 'none';
+  }
+
+  function closeAuditModalFn() {
+    if (auditModal) auditModal.classList.remove('active');
+  }
+
+  if (auditImproveBtn) {
+    auditImproveBtn.addEventListener('click', openAuditModal);
+  }
+
+  if (auditModal) {
+    if (closeAuditModal) closeAuditModal.addEventListener('click', closeAuditModalFn);
+    auditModal.addEventListener('click', (e) => {
+      if (e.target === auditModal) closeAuditModalFn();
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && auditModal && auditModal.classList.contains('active')) {
+      closeAuditModalFn();
+    }
+  });
+
+  if (auditContactForm) {
+    auditContactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fd = new FormData(auditContactForm);
+      const name = fd.get('auditName') || '';
+      const body = [
+        'Name: ' + name,
+        'Email: ' + (fd.get('auditEmail') || ''),
+        'Phone: ' + (fd.get('auditPhone') || ''),
+        'Website: ' + (fd.get('auditWebsite') || ''),
+        '',
+        fd.get('auditMessage') || ''
+      ].join('\n');
+
+      fetch('https://formsubmit.co/ajax/admin@mathrix.co.uk', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name: name,
+          email: fd.get('auditEmail'),
+          phone: fd.get('auditPhone'),
+          _subject: 'Website Audit — Improve Request from ' + name,
+          message: body
+        })
+      }).catch(() => {});
+
+      auditContactForm.style.display = 'none';
+      auditContactSuccess.style.display = 'block';
+    });
+  }
 });
