@@ -264,6 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('a[href^="#"]').forEach((a) => {
     a.addEventListener('click', (e) => {
+      if (a.getAttribute('href') === '#audit') return;
       const t = document.querySelector(a.getAttribute('href'));
       if (t) {
         e.preventDefault();
@@ -337,27 +338,98 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ========================================================
+  // HERO TABS
+  // ========================================================
+  const heroTabAudit = document.getElementById('heroTabAudit');
+  const heroTabDemo = document.getElementById('heroTabDemo');
+  const heroAuditPanel = document.getElementById('heroAuditPanel');
+  const heroDemoPanel = document.getElementById('heroDemoPanel');
+
+  function activateHeroTab(tab) {
+    const isAudit = tab === 'audit';
+    if (heroTabAudit) {
+      heroTabAudit.classList.toggle('active', isAudit);
+      heroTabAudit.setAttribute('aria-selected', isAudit ? 'true' : 'false');
+    }
+    if (heroTabDemo) {
+      heroTabDemo.classList.toggle('active', !isAudit);
+      heroTabDemo.setAttribute('aria-selected', !isAudit ? 'true' : 'false');
+    }
+    if (heroAuditPanel) {
+      heroAuditPanel.classList.toggle('active', isAudit);
+      heroAuditPanel.hidden = !isAudit;
+    }
+    if (heroDemoPanel) {
+      heroDemoPanel.classList.toggle('active', !isAudit);
+      heroDemoPanel.hidden = isAudit;
+    }
+  }
+
+  if (heroTabAudit && heroTabDemo) {
+    heroTabAudit.addEventListener('click', () => activateHeroTab('audit'));
+    heroTabDemo.addEventListener('click', () => activateHeroTab('demo'));
+  }
+
+  document.querySelectorAll('a[href="#audit"]').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      activateHeroTab('audit');
+      const hero = document.getElementById('hero');
+      if (hero) hero.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  const auditScrollToHero = document.getElementById('auditScrollToHero');
+  if (auditScrollToHero) {
+    auditScrollToHero.addEventListener('click', (e) => {
+      e.preventDefault();
+      activateHeroTab('audit');
+      const hero = document.getElementById('hero');
+      if (hero) hero.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
+  // ========================================================
   // FREE WEBSITE AUDIT
   // ========================================================
-  const auditForm = document.getElementById('auditForm');
-  const auditUrlInput = document.getElementById('auditUrl');
-  const auditSubmitBtn = document.getElementById('auditSubmitBtn');
-  const auditError = document.getElementById('auditError');
+  const heroAuditForm = document.getElementById('heroAuditForm');
+  const heroAuditUrlInput = document.getElementById('heroAuditUrl');
+  const heroAuditSubmitBtn = document.getElementById('heroAuditSubmitBtn');
+  const heroAuditError = document.getElementById('heroAuditError');
+  const heroAuditResults = document.getElementById('heroAuditResults');
   const auditResults = document.getElementById('auditResults');
-  const auditScoreRing = document.getElementById('auditScoreRing');
-  const auditScoreValue = document.getElementById('auditScoreValue');
-  const auditScoreHeadline = document.getElementById('auditScoreHeadline');
-  const auditScoreSummary = document.getElementById('auditScoreSummary');
-  const auditUrlDisplay = document.getElementById('auditUrlDisplay');
-  const auditPassList = document.getElementById('auditPassList');
-  const auditIssueList = document.getElementById('auditIssueList');
-  const auditImproveBtn = document.getElementById('auditImproveBtn');
+  const auditSectionIntro = document.getElementById('auditSectionIntro');
   const auditModal = document.getElementById('auditModal');
   const closeAuditModal = document.getElementById('closeAuditModal');
   const auditContactForm = document.getElementById('auditContactForm');
   const auditContactSuccess = document.getElementById('auditContactSuccess');
   const auditModalUrl = document.getElementById('auditModalUrl');
   const auditModalMessage = document.getElementById('auditModalMessage');
+
+  const auditPanels = [
+    {
+      results: heroAuditResults,
+      scoreRing: document.getElementById('heroAuditScoreRing'),
+      scoreValue: document.getElementById('heroAuditScoreValue'),
+      scoreHeadline: document.getElementById('heroAuditScoreHeadline'),
+      scoreSummary: document.getElementById('heroAuditScoreSummary'),
+      urlDisplay: document.getElementById('heroAuditUrlDisplay'),
+      passList: document.getElementById('heroAuditPassList'),
+      issueList: document.getElementById('heroAuditIssueList'),
+      form: heroAuditForm
+    },
+    {
+      results: auditResults,
+      scoreRing: document.getElementById('auditScoreRing'),
+      scoreValue: document.getElementById('auditScoreValue'),
+      scoreHeadline: document.getElementById('auditScoreHeadline'),
+      scoreSummary: document.getElementById('auditScoreSummary'),
+      urlDisplay: document.getElementById('auditUrlDisplay'),
+      passList: document.getElementById('auditPassList'),
+      issueList: document.getElementById('auditIssueList'),
+      form: null
+    }
+  ].filter((panel) => panel.results);
 
   let lastAuditResult = null;
 
@@ -381,6 +453,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function renderAuditList(listEl, checks, emptyMessage) {
+    if (!listEl) return;
     listEl.innerHTML = '';
     if (checks.length === 0) {
       const li = document.createElement('li');
@@ -399,68 +472,78 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function renderAuditResults(result) {
     lastAuditResult = result;
-    auditResults.hidden = false;
-    auditScoreValue.textContent = String(result.score);
-    auditScoreRing.className = 'audit-score-ring ' + scoreClass(result.score);
-    auditScoreHeadline.textContent = scoreHeadline(result.score);
-    auditScoreSummary.textContent = 'We checked ' + result.checks.length + ' SEO, performance, and mobile signals.';
-    auditUrlDisplay.textContent = result.url;
-
     const passChecks = result.checks.filter((c) => c.status === 'pass');
     const issueChecks = result.checks.filter((c) => c.status !== 'pass');
+    const summaryText = 'We checked ' + result.checks.length + ' SEO, performance, and mobile signals.';
 
-    renderAuditList(auditPassList, passChecks, 'No passing checks yet.');
-    renderAuditList(
-      auditIssueList,
-      issueChecks,
-      issueChecks.length === 0 ? 'All checks passed — your site is in great shape.' : ''
-    );
+    auditPanels.forEach((panel) => {
+      panel.results.hidden = false;
+      if (panel.scoreValue) panel.scoreValue.textContent = String(result.score);
+      if (panel.scoreRing) panel.scoreRing.className = 'audit-score-ring ' + scoreClass(result.score);
+      if (panel.scoreHeadline) panel.scoreHeadline.textContent = scoreHeadline(result.score);
+      if (panel.scoreSummary) panel.scoreSummary.textContent = summaryText;
+      if (panel.urlDisplay) panel.urlDisplay.textContent = result.url;
+      renderAuditList(panel.passList, passChecks, 'No passing checks yet.');
+      renderAuditList(
+        panel.issueList,
+        issueChecks,
+        issueChecks.length === 0 ? 'All checks passed — your site is in great shape.' : ''
+      );
+    });
 
-    auditResults.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    if (auditSectionIntro) auditSectionIntro.textContent = 'Full breakdown for ' + result.url;
   }
 
-  function setAuditLoading(loading) {
-    const btnText = auditSubmitBtn.querySelector('.btn-text');
-    const btnSpinner = auditSubmitBtn.querySelector('.btn-spinner');
-    btnText.style.display = loading ? 'none' : 'inline';
-    btnSpinner.style.display = loading ? 'flex' : 'none';
-    auditSubmitBtn.disabled = loading;
+  function setAuditLoading(loading, submitBtn) {
+    if (!submitBtn) return;
+    const btnText = submitBtn.querySelector('.btn-text');
+    const btnSpinner = submitBtn.querySelector('.btn-spinner');
+    if (btnText) btnText.style.display = loading ? 'none' : 'inline';
+    if (btnSpinner) btnSpinner.style.display = loading ? 'flex' : 'none';
+    submitBtn.disabled = loading;
   }
 
-  if (auditForm) {
-    auditForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      auditError.textContent = '';
-      auditUrlInput.classList.remove('error');
+  async function handleAuditSubmit(e, urlInput, errorEl, submitBtn) {
+    e.preventDefault();
+    if (errorEl) errorEl.textContent = '';
+    if (urlInput) urlInput.classList.remove('error');
 
-      const rawUrl = auditUrlInput.value.trim();
-      if (!rawUrl) {
-        auditUrlInput.classList.add('error');
-        auditError.textContent = 'Please enter your website URL.';
-        return;
+    const rawUrl = urlInput ? urlInput.value.trim() : '';
+    if (!rawUrl) {
+      if (urlInput) urlInput.classList.add('error');
+      if (errorEl) errorEl.textContent = 'Please enter your website URL.';
+      return;
+    }
+
+    const url = normalizeUrl(rawUrl);
+    setAuditLoading(true, submitBtn);
+
+    try {
+      const response = await fetch('/api/audit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url })
+      });
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Audit failed. Please try again.');
       }
 
-      const url = normalizeUrl(rawUrl);
-      setAuditLoading(true);
-
-      try {
-        const response = await fetch('/api/audit', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ url })
-        });
-        const data = await response.json();
-
-        if (!response.ok) {
-          throw new Error(data.error || 'Audit failed. Please try again.');
-        }
-
-        renderAuditResults(data);
-      } catch (err) {
-        auditError.textContent = err.message || 'Something went wrong. Please try again.';
-      } finally {
-        setAuditLoading(false);
+      renderAuditResults(data);
+      if (auditResults) {
+        auditResults.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
+    } catch (err) {
+      if (errorEl) errorEl.textContent = err.message || 'Something went wrong. Please try again.';
+    } finally {
+      setAuditLoading(false, submitBtn);
+    }
+  }
+
+  if (heroAuditForm) {
+    heroAuditForm.addEventListener('submit', (e) => {
+      handleAuditSubmit(e, heroAuditUrlInput, heroAuditError, heroAuditSubmitBtn);
     });
   }
 
@@ -477,9 +560,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (auditModal) auditModal.classList.remove('active');
   }
 
-  if (auditImproveBtn) {
-    auditImproveBtn.addEventListener('click', openAuditModal);
-  }
+  document.querySelectorAll('#auditImproveBtn, #heroAuditImproveBtn').forEach((btn) => {
+    btn.addEventListener('click', openAuditModal);
+  });
 
   if (auditModal) {
     if (closeAuditModal) closeAuditModal.addEventListener('click', closeAuditModalFn);

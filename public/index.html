@@ -36,19 +36,69 @@
         </div>
     </nav>
 
-    <section class="ribbon ribbon-dark ribbon-hero section-fade">
+    <section class="ribbon ribbon-dark ribbon-hero section-fade" id="hero">
         <div class="hero-split">
             <!-- LEFT COLUMN: Copy + Inline Form -->
             <div class="hero-copy-col">
                 <div class="hero-free-tag" data-animate>
                     <span class="free-tag-dot"></span>
-                    100% free &middot; No commitment &middot; No strings attached
+                    Free website audit &amp; demo &middot; No commitment
                 </div>
-                <h1 class="ribbon-headline headline-xl word-reveal">We'll Build Your Website Demo — <span class="text-grad">For Free</span></h1>
-                <p class="ribbon-copy" data-animate>See exactly what your website or app will look like before spending a penny. Love it? We build it. If not, keep the design — no pressure.</p>
+                <h1 class="ribbon-headline headline-xl word-reveal">Check Your Website — <span class="text-grad">For Free</span></h1>
+                <p class="ribbon-copy" data-animate>Run an instant SEO and performance audit, or request a free website demo. See what's working, what's not, and how we can help.</p>
 
-                <!-- Inline Hero Form -->
+                <!-- Hero tabs: Audit + Demo -->
                 <div class="hero-form-card" data-animate>
+                    <div class="hero-form-tabs" role="tablist" aria-label="Hero actions">
+                        <button type="button" class="hero-tab active" id="heroTabAudit" role="tab" aria-selected="true" aria-controls="heroAuditPanel" data-tab="audit">Free Website Audit</button>
+                        <button type="button" class="hero-tab" id="heroTabDemo" role="tab" aria-selected="false" aria-controls="heroDemoPanel" data-tab="demo">Get Free Demo</button>
+                    </div>
+
+                    <div class="hero-tab-panel active" id="heroAuditPanel" role="tabpanel" aria-labelledby="heroTabAudit">
+                        <form id="heroAuditForm" class="hero-form hero-audit-form" novalidate>
+                            <div class="hero-form-field">
+                                <input type="url" id="heroAuditUrl" name="heroAuditUrl" placeholder="https://yourwebsite.com" required autocomplete="url" aria-label="Website URL">
+                            </div>
+                            <button type="submit" class="hero-form-submit" id="heroAuditSubmitBtn">
+                                <span class="btn-text">Run Free Audit &rarr;</span>
+                                <span class="btn-spinner" style="display:none"><svg class="spin-svg" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="31.4 31.4" stroke-linecap="round"/></svg>Scanning...</span>
+                            </button>
+                            <p class="audit-error hero-audit-error" id="heroAuditError" role="alert"></p>
+                            <p class="hero-form-fine">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" stroke="#6e6e73" stroke-width="2"/><path d="M7 11V7a5 5 0 0110 0v4" stroke="#6e6e73" stroke-width="2" stroke-linecap="round"/></svg>
+                                Instant results &middot; SEO, speed &amp; mobile checks
+                            </p>
+                        </form>
+
+                        <div class="audit-results hero-audit-results" id="heroAuditResults" hidden>
+                            <div class="audit-score-row hero-audit-score-row">
+                                <div class="audit-score-ring" id="heroAuditScoreRing">
+                                    <span class="audit-score-value" id="heroAuditScoreValue">0</span>
+                                    <span class="audit-score-label">Score</span>
+                                </div>
+                                <div class="audit-score-copy">
+                                    <h3 id="heroAuditScoreHeadline">Your website audit</h3>
+                                    <p id="heroAuditScoreSummary">We checked your site for SEO, performance, and mobile readiness.</p>
+                                    <p class="audit-url-display" id="heroAuditUrlDisplay"></p>
+                                </div>
+                            </div>
+                            <div class="audit-columns hero-audit-columns">
+                                <div class="audit-column">
+                                    <h4>What's working</h4>
+                                    <ul class="audit-check-list" id="heroAuditPassList"></ul>
+                                </div>
+                                <div class="audit-column">
+                                    <h4>Needs improvement</h4>
+                                    <ul class="audit-check-list" id="heroAuditIssueList"></ul>
+                                </div>
+                            </div>
+                            <div class="audit-cta-row">
+                                <button type="button" class="hero-form-submit hero-audit-improve" id="heroAuditImproveBtn">Improve Now &rarr;</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-tab-panel" id="heroDemoPanel" role="tabpanel" aria-labelledby="heroTabDemo" hidden>
                     <form id="heroForm" class="hero-form" novalidate>
                         <div class="hero-form-field">
                             <input type="text" name="heroName" id="heroName" placeholder="Full Name" required autocomplete="name">
@@ -72,6 +122,7 @@
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#2997ff"/><path d="M7 12l3 3 7-7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         <h4>You're in! Demo requested.</h4>
                         <p>We'll be in touch within 24 hours with your free mockup.</p>
+                    </div>
                     </div>
                 </div>
 
@@ -456,27 +507,16 @@
         </div>
     </section>
 
-    <!-- Free Website Audit -->
+    <!-- Free Website Audit (detailed results) -->
     <section class="ribbon ribbon-light section-fade section-fade-light" id="audit">
         <div class="ribbon-body">
-            <p class="ribbon-eyebrow dark" data-animate>Free Website Audit</p>
-            <h2 class="ribbon-headline headline-lg dark word-reveal">See what's working<br><span class="text-grad-dark">and what's not.</span></h2>
-            <p class="ribbon-copy dark" data-animate>Enter your website URL and get an instant SEO and technical health check — completely free.</p>
+            <p class="ribbon-eyebrow dark" data-animate>Your Audit Results</p>
+            <h2 class="ribbon-headline headline-lg dark word-reveal">Here's what we found<br><span class="text-grad-dark">on your website.</span></h2>
+            <p class="ribbon-copy dark" data-animate id="auditSectionIntro">Run a free audit in the hero section above to see your full breakdown here.</p>
         </div>
         <div class="audit-wrap" data-animate>
-            <div class="audit-card">
-                <form id="auditForm" class="audit-form" novalidate>
-                    <div class="audit-input-row">
-                        <input type="url" id="auditUrl" name="auditUrl" placeholder="https://yourwebsite.com" required autocomplete="url" aria-label="Website URL">
-                        <button type="submit" class="audit-submit" id="auditSubmitBtn">
-                            <span class="btn-text">Run Free Audit &rarr;</span>
-                            <span class="btn-spinner" style="display:none"><svg class="spin-svg" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="31.4 31.4" stroke-linecap="round"/></svg>Scanning...</span>
-                        </button>
-                    </div>
-                    <p class="audit-error" id="auditError" role="alert"></p>
-                </form>
-
-                <div class="audit-results" id="auditResults" hidden>
+            <div class="audit-card" id="auditSectionCard">
+                <div class="audit-results audit-results-section" id="auditResults" hidden>
                     <div class="audit-score-row">
                         <div class="audit-score-ring" id="auditScoreRing" data-score="0">
                             <span class="audit-score-value" id="auditScoreValue">0</span>
@@ -504,6 +544,10 @@
                         <button type="button" class="hero-btn hero-btn-primary" id="auditImproveBtn">Improve Now &rarr;</button>
                         <p class="audit-cta-fine">Get a free consultation to fix these issues and grow your traffic.</p>
                     </div>
+                </div>
+                <div class="audit-placeholder" id="auditPlaceholder">
+                    <p>Enter your website URL in the hero section and click <strong>Run Free Audit</strong> to see your results here.</p>
+                    <a href="#" class="cta-blue" id="auditScrollToHero">Run audit now <span class="chevron">›</span></a>
                 </div>
             </div>
         </div>
