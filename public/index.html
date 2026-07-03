@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-analytics-domain="autolabs.co.uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AutoLabs — We Build Apps & Websites That People Love</title>
-    <meta name="description" content="AutoLabs builds world-class apps and websites. From concept to launch, we design and develop digital products that drive real business results.">
+    <title>AutoLabs — Free Website Audit &amp; Web Design</title>
+    <meta name="description" content="Run a free instant website audit — SEO, speed, and mobile checks. Then get a free demo mockup from AutoLabs. 200+ websites built.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/png" href="/favicon-opt.png">
     <link rel="stylesheet" href="/styles.css">
+    <script id="plausible-script" data-src="https://plausible.io/js/script.js"></script>
+    <script src="/analytics.js" defer></script>
 </head>
 <body>
     <nav class="globalheader" id="navbar">
         <div class="gh-inner">
             <a href="#" class="gh-logo" aria-label="AutoLabs">
-                <img src="/logo.png" alt="AutoLabs" class="nav-logo-img">
+                <img src="/logo-nav.webp" alt="AutoLabs" class="nav-logo-img" width="256" height="64" fetchpriority="high">
             </a>
             <div class="gh-links" id="ghLinks">
                 <a href="#apps">Apps</a>
@@ -60,7 +62,7 @@
                             <div class="hero-form-field">
                                 <input type="url" id="heroAuditUrl" name="heroAuditUrl" placeholder="https://yourwebsite.com" required autocomplete="url" aria-label="Website URL">
                             </div>
-                            <button type="submit" class="hero-form-submit" id="heroAuditSubmitBtn">
+                            <button type="submit" class="hero-form-submit" id="heroAuditSubmitBtn" data-track="audit_submit">
                                 <span class="btn-text">Run Free Audit &rarr;</span>
                                 <span class="btn-spinner" style="display:none"><svg class="spin-svg" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="31.4 31.4" stroke-linecap="round"/></svg>Scanning...</span>
                             </button>
@@ -101,28 +103,39 @@
 
                     <div class="hero-tab-panel" id="heroDemoPanel" role="tabpanel" aria-labelledby="heroTabDemo" hidden>
                     <form id="heroForm" class="hero-form" novalidate>
-                        <div class="hero-form-field">
-                            <input type="text" name="heroName" id="heroName" placeholder="Full Name" required autocomplete="name">
+                        <div class="hero-form-step" id="heroFormStep1">
+                            <div class="hero-form-field">
+                                <input type="email" name="heroEmail" id="heroEmail" placeholder="Your work email" required autocomplete="email">
+                            </div>
+                            <button type="submit" class="hero-form-submit" id="heroFormStep1Btn" data-track="demo_step1">
+                                <span class="btn-text">Get My Free Demo &rarr;</span>
+                                <span class="btn-spinner" style="display:none"><svg class="spin-svg" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="31.4 31.4" stroke-linecap="round"/></svg>Sending...</span>
+                            </button>
+                            <p class="hero-form-fine">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" stroke="#6e6e73" stroke-width="2"/><path d="M7 11V7a5 5 0 0110 0v4" stroke="#6e6e73" stroke-width="2" stroke-linecap="round"/></svg>
+                                Just your email to start &middot; No payment &middot; No spam
+                            </p>
                         </div>
-                        <div class="hero-form-field">
-                            <input type="email" name="heroEmail" id="heroEmail" placeholder="Email Address" required autocomplete="email">
+                        <div class="hero-form-step" id="heroFormStep2" hidden>
+                            <p class="hero-form-step-label">Almost done — where should we send your mockup?</p>
+                            <input type="hidden" id="heroEmailConfirmed" name="heroEmailConfirmed">
+                            <div class="hero-form-field">
+                                <input type="text" name="heroName" id="heroName" placeholder="Full Name" required autocomplete="name">
+                            </div>
+                            <div class="hero-form-field">
+                                <input type="tel" name="heroPhone" id="heroPhone" placeholder="Phone (optional — for faster callback)" autocomplete="tel">
+                            </div>
+                            <button type="submit" class="hero-form-submit" data-track="demo_submit">
+                                <span class="btn-text">Send My Demo Request &rarr;</span>
+                                <span class="btn-spinner" style="display:none"><svg class="spin-svg" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="31.4 31.4" stroke-linecap="round"/></svg>Sending...</span>
+                            </button>
+                            <button type="button" class="hero-form-skip" id="heroFormSkipDetails" data-track="demo_skip_details">Skip — just email me when it's ready</button>
                         </div>
-                        <div class="hero-form-field">
-                            <input type="tel" name="heroPhone" id="heroPhone" placeholder="Phone Number" required autocomplete="tel">
-                        </div>
-                        <button type="submit" class="hero-form-submit">
-                            <span class="btn-text">Get My Free Demo &rarr;</span>
-                            <span class="btn-spinner" style="display:none"><svg class="spin-svg" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="31.4 31.4" stroke-linecap="round"/></svg>Sending...</span>
-                        </button>
-                        <p class="hero-form-fine">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" stroke="#6e6e73" stroke-width="2"/><path d="M7 11V7a5 5 0 0110 0v4" stroke="#6e6e73" stroke-width="2" stroke-linecap="round"/></svg>
-                            No payment required &middot; No spam &middot; Response within 24 hours
-                        </p>
                     </form>
                     <div class="hero-form-success" id="heroFormSuccess" style="display:none">
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#2997ff"/><path d="M7 12l3 3 7-7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         <h4>You're in! Demo requested.</h4>
-                        <p>We'll be in touch within 24 hours with your free mockup.</p>
+                        <p>Check your inbox for a confirmation. We'll be in touch within 24 hours with your free mockup.</p>
                     </div>
                     </div>
                 </div>
@@ -361,9 +374,9 @@
             <div class="stat-block"><span class="stat-num" data-count="50">0M+</span><span class="stat-label">Users across our products</span></div>
         </div>
         <div class="portfolio-grid" data-stagger>
-            <a href="/websites.html" class="portfolio-card"><div class="pc-img pc-1"></div><h4>Adyen</h4><p>Fintech Payment Platform</p></a>
-            <a href="/websites.html" class="portfolio-card"><div class="pc-img pc-2"></div><h4>Kayana</h4><p>Ordering & Payment Solutions</p></a>
-            <a href="/websites.html" class="portfolio-card"><div class="pc-img pc-3"></div><h4>Kamm Solutions</h4><p>Digital Engineering Agency</p></a>
+            <a href="/websites.html" class="portfolio-card"><div class="pc-img pc-kayana"></div><h4>Kayana</h4><p>Ordering &amp; Payment Platform</p></a>
+            <a href="/websites.html" class="portfolio-card"><div class="pc-img pc-flamefish"></div><h4>Flame Fish &amp; Grill</h4><p>Restaurant &amp; Online Menu</p></a>
+            <a href="/websites.html" class="portfolio-card"><div class="pc-img pc-getsmotives"></div><h4>Getsmotives</h4><p>Activity Management Platform</p></a>
         </div>
         <div class="ribbon-ctas" data-animate style="margin-top:32px">
             <a href="/websites.html" class="cta-blue">View all projects <span class="chevron">›</span></a>
@@ -377,9 +390,21 @@
             <h2 class="ribbon-headline headline-lg" data-animate>Don't take our word for it.</h2>
         </div>
         <div class="testi-row" data-stagger>
-            <div class="testi-card"><p>"AutoLabs rebuilt our entire platform. The result? 3x more conversions, 40% faster load times, and a product our users genuinely love."</p><div class="testi-author"><strong>Sarah Kim</strong><span>CEO, Adyen</span></div></div>
-            <div class="testi-card"><p>"They don't just build what you ask for — they build what you actually need. Our app hit #4 in the App Store within two weeks of launch."</p><div class="testi-author"><strong>James Ortiz</strong><span>Founder, Kamm Solutions</span></div></div>
-            <div class="testi-card"><p>"The design quality is on another level. Every screen, every interaction — it feels like a product from a company 10x our size."</p><div class="testi-author"><strong>Priya Sharma</strong><span>Head of Product, Kayana</span></div></div>
+            <div class="testi-card">
+                <img class="testi-logo" src="/thumbs/kayana.webp" alt="Kayana for Business" width="120" height="48" loading="lazy">
+                <p>"AutoLabs built our ordering and payment platform from scratch. The site is fast, easy for customers to use, and our online orders grew within the first month."</p>
+                <div class="testi-author"><strong>Operations Team</strong><span>Kayana for Business</span></div>
+            </div>
+            <div class="testi-card">
+                <img class="testi-logo" src="/thumbs/flamefish.webp" alt="Flame Fish &amp; Grill" width="120" height="48" loading="lazy">
+                <p>"They understood our brand immediately. The new website looks premium, works perfectly on mobile, and customers constantly compliment how easy it is to browse our menu."</p>
+                <div class="testi-author"><strong>Management</strong><span>Flame Fish &amp; Grill, London</span></div>
+            </div>
+            <div class="testi-card">
+                <img class="testi-logo" src="/thumbs/getsmotives.png" alt="Getsmotives" width="48" height="48" loading="lazy">
+                <p>"From the organiser portal to the public-facing site, AutoLabs delivered a complex platform on time. Communication was clear at every milestone — no disappearing acts."</p>
+                <div class="testi-author"><strong>Product Team</strong><span>Getsmotives</span></div>
+            </div>
         </div>
     </section>
 
@@ -412,7 +437,8 @@
             <h2 class="ribbon-headline headline-lg dark word-reveal">Are you proud to share<br><span class="text-grad-dark">your website or app?</span></h2>
             <p class="ribbon-copy dark" data-animate>If you hesitate before sharing the link, something's off. Let's fix that.</p>
             <div class="ribbon-ctas" data-animate>
-                <a href="#contact" class="cta-blue">Start your transformation <span class="chevron">›</span></a>
+                <a href="#hero" class="cta-blue nav-audit-cta" data-track="cta_audit" data-track-label="Emotional CTA">Run free audit <span class="chevron">›</span></a>
+                <a href="#contact" class="cta-link dark" data-track="cta_contact" data-track-label="Emotional CTA contact">Talk to us <span class="chevron">›</span></a>
             </div>
         </div>
     </section>
@@ -424,7 +450,7 @@
             <p class="ribbon-copy dark" data-animate>Every project is scoped and quoted before we write a single line of code.</p>
         </div>
         <div class="price-row" data-stagger>
-            <div class="price-card"><h4>Starter</h4><div class="price-val">From £500</div><p class="price-desc">Landing pages, marketing sites, and MVPs.</p><ul><li>Responsive website</li><li>CMS integration</li><li>SEO foundations</li><li>2 revision rounds</li></ul><a href="#contact" class="cta-blue">Get started <span class="chevron">›</span></a></div>
+            <div class="price-card"><h4>Starter</h4><div class="price-val">From £500</div><p class="price-desc">Landing pages, marketing sites, and MVPs.</p><ul><li>Responsive website</li><li>CMS integration</li><li>SEO foundations</li><li>2 revision rounds</li></ul><a href="#hero" class="cta-blue nav-audit-cta" data-track="cta_audit" data-track-label="Starter pricing">Free audit first <span class="chevron">›</span></a></div>
             <div class="price-card popular"><div class="pop-tag">Most Popular</div><h4>Growth</h4><div class="price-val">From £5,000</div><p class="price-desc">Custom apps and web platforms for growing companies.</p><ul><li>Native mobile or web app</li><li>UI/UX design from scratch</li><li>Backend & API development</li><li>Analytics setup</li><li>3 months post-launch support</li></ul><a href="#contact" class="cta-blue">Get started <span class="chevron">›</span></a></div>
             <div class="price-card"><h4>Enterprise</h4><div class="price-val">Custom</div><p class="price-desc">Complex platforms and long-term partnerships.</p><ul><li>Dedicated product team</li><li>iOS + Android + Web</li><li>Custom integrations</li><li>Ongoing iteration</li><li>Priority SLA</li></ul><a href="#contact" class="cta-blue">Contact us <span class="chevron">›</span></a></div>
         </div>
@@ -439,8 +465,8 @@
         <div class="steps-grid" data-stagger>
             <div class="step-card">
                 <div class="step-num">1</div>
-                <h3>Book a Free Consultation</h3>
-                <p>30-minute call to understand your goals. No pitch, no pressure.</p>
+                <h3>Run a Free Audit</h3>
+                <p>Enter your URL for instant SEO, speed, and mobile checks — or book a 30-minute call. No pitch, no pressure.</p>
             </div>
             <div class="step-card">
                 <div class="step-num">2</div>
@@ -581,7 +607,7 @@
                 <button type="submit" class="submit-btn"><span class="btn-text">Get Your Free Consultation →</span><span class="btn-spinner" style="display:none"><svg class="spin-svg" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="31.4 31.4" stroke-linecap="round"/></svg>Sending...</span></button>
                 <p class="form-fine">Free consultation · No commitment · Response within 24 hours</p>
             </form>
-            <div class="form-success" id="formSuccess" style="display:none"><svg width="56" height="56" viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="28" fill="#2997ff"/><path d="M18 28l7 7 13-13" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>We've received your request.</h3><p>A member of our team will reach out within 24 hours with a free project consultation. We can't wait to build something great together.</p></div>
+            <div class="form-success" id="formSuccess" style="display:none"><svg width="56" height="56" viewBox="0 0 56 56" fill="none"><circle cx="28" cy="28" r="28" fill="#2997ff"/><path d="M18 28l7 7 13-13" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><h3>We've received your request.</h3><p>Check your inbox for a confirmation email. A member of our team will reach out within 24 hours with a free project consultation.</p></div>
         </div>
     </section>
 
@@ -613,7 +639,7 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/447921051871" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <a href="https://wa.me/447921051871" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat on WhatsApp" data-track="whatsapp_click">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         <span>Chat with us</span>
     </a>

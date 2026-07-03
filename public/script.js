@@ -1,4 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const FORM_ENDPOINT = 'https://formsubmit.co/ajax/admin@mathrix.co.uk';
+  const FORM_AUTORESPONSE =
+    "Thanks for contacting AutoLabs! We've received your message and a member of our team will reply within 24 hours.\n\nYou can also run a free website audit anytime on our homepage.\n\n— The AutoLabs Team";
+
+  function submitForm(payload, eventName) {
+    if (typeof window.trackEvent === 'function') {
+      window.trackEvent(eventName, { subject: payload._subject || 'form' });
+    }
+    return fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        _template: 'table',
+        _autoresponse: FORM_AUTORESPONSE,
+        ...payload,
+      }),
+    }).catch(() => {});
+  }
+
+  function setButtonLoading(btn, loading) {
+    if (!btn) return;
+    const btnText = btn.querySelector('.btn-text');
+    const btnSpinner = btn.querySelector('.btn-spinner');
+    if (btnText) btnText.style.display = loading ? 'none' : 'inline';
+    if (btnSpinner) btnSpinner.style.display = loading ? 'flex' : 'none';
+    btn.disabled = loading;
+  }
+
   const menuBtn = document.getElementById('menuBtn');
   const ghLinks = document.getElementById('ghLinks');
 
@@ -115,51 +143,84 @@ document.addEventListener('DOMContentLoaded', () => {
   // ========================================================
   const heroForm = document.getElementById('heroForm');
   const heroFormSuccess = document.getElementById('heroFormSuccess');
+  const heroFormStep1 = document.getElementById('heroFormStep1');
+  const heroFormStep2 = document.getElementById('heroFormStep2');
+  const heroFormSkipDetails = document.getElementById('heroFormSkipDetails');
+  let heroDemoEmail = '';
+
+  function sendHeroDemoRequest(name, email, phone) {
+    const displayName = name || 'Prospect';
+    const body = [
+      'Name: ' + (name || 'Not provided'),
+      'Email: ' + email,
+      'Phone: ' + (phone || 'Not provided'),
+    ].join('\n');
+
+    return submitForm(
+      {
+        name: displayName,
+        email: email,
+        phone: phone || '',
+        _subject: 'Free Demo Request from ' + displayName,
+        message: body,
+      },
+      'demo_submit'
+    );
+  }
+
+  function showHeroDemoSuccess() {
+    if (heroForm) heroForm.style.display = 'none';
+    if (heroFormSuccess) heroFormSuccess.style.display = 'block';
+  }
 
   if (heroForm) {
     heroForm.addEventListener('submit', (e) => {
       e.preventDefault();
-
-      // Clear previous errors
       heroForm.querySelectorAll('input.error').forEach((el) => el.classList.remove('error'));
 
-      const name = heroForm.heroName.value.trim();
-      const email = heroForm.heroEmail.value.trim();
-      const phone = heroForm.heroPhone.value.trim();
-      let ok = true;
+      const onStep1 = heroFormStep2 && heroFormStep2.hidden;
 
-      if (!name) { heroForm.heroName.classList.add('error'); ok = false; }
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { heroForm.heroEmail.classList.add('error'); ok = false; }
-      if (!phone) { heroForm.heroPhone.classList.add('error'); ok = false; }
-      if (!ok) return;
+      if (onStep1) {
+        const email = heroForm.heroEmail.value.trim();
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          heroForm.heroEmail.classList.add('error');
+          return;
+        }
+        heroDemoEmail = email;
+        const confirmed = document.getElementById('heroEmailConfirmed');
+        if (confirmed) confirmed.value = email;
+        heroFormStep1.hidden = true;
+        heroFormStep2.hidden = false;
+        if (typeof window.trackEvent === 'function') {
+          window.trackEvent('demo_step1', { email_domain: email.split('@')[1] || '' });
+        }
+        heroForm.heroName.focus();
+        return;
+      }
+
+      const name = heroForm.heroName.value.trim();
+      const phone = heroForm.heroPhone.value.trim();
+      if (!name) {
+        heroForm.heroName.classList.add('error');
+        return;
+      }
 
       const btn = heroForm.querySelector('.hero-form-submit');
-      btn.querySelector('.btn-text').style.display = 'none';
-      btn.querySelector('.btn-spinner').style.display = 'flex';
-      btn.disabled = true;
+      setButtonLoading(btn, true);
 
-      const body = [
-        'Name: ' + name,
-        'Email: ' + email,
-        'Phone: ' + phone
-      ].join('\n');
+      sendHeroDemoRequest(name, heroDemoEmail, phone).finally(() => {
+        setTimeout(showHeroDemoSuccess, 800);
+      });
+    });
+  }
 
-      fetch('https://formsubmit.co/ajax/admin@mathrix.co.uk', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          phone: phone,
-          _subject: 'Free Demo Request from ' + name,
-          message: body
-        })
-      }).catch(() => {});
-
-      setTimeout(() => {
-        heroForm.style.display = 'none';
-        heroFormSuccess.style.display = 'block';
-      }, 1200);
+  if (heroFormSkipDetails && heroForm) {
+    heroFormSkipDetails.addEventListener('click', () => {
+      if (!heroDemoEmail) return;
+      setButtonLoading(heroFormSkipDetails, true);
+      sendHeroDemoRequest('', heroDemoEmail, '').finally(() => {
+        setTimeout(showHeroDemoSuccess, 800);
+      });
     });
   }
 
@@ -226,18 +287,17 @@ document.addEventListener('DOMContentLoaded', () => {
         'Message: ' + (formData.get('message') || '')
       ].join('\n');
 
-      fetch('https://formsubmit.co/ajax/admin@mathrix.co.uk', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
+      submitForm(
+        {
           name: formData.get('fullName'),
           email: formData.get('workEmail'),
           phone: formData.get('mobile'),
           company: formData.get('company'),
           _subject: 'New AutoLabs Enquiry from ' + formData.get('fullName'),
-          message: body
-        })
-      }).catch(() => {});
+          message: body,
+        },
+        'contact_submit'
+      );
 
       setTimeout(() => {
         form.style.display = 'none';
@@ -321,16 +381,15 @@ document.addEventListener('DOMContentLoaded', () => {
         'Details: ' + (fd.get('demoDetails') || '')
       ].join('\n');
 
-      fetch('https://formsubmit.co/ajax/admin@mathrix.co.uk', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
+      submitForm(
+        {
           name: fd.get('demoName'),
           email: fd.get('demoEmail'),
           _subject: 'Free Demo Request from ' + fd.get('demoName'),
-          message: body
-        })
-      }).catch(() => {});
+          message: body,
+        },
+        'demo_modal_submit'
+      );
 
       demoForm.style.display = 'none';
       demoSuccess.style.display = 'block';
@@ -557,6 +616,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       renderAuditResults(data);
+      if (typeof window.trackEvent === 'function') {
+        window.trackEvent('audit_complete', {
+          score: data.score,
+          url: data.url,
+          issues: data.checks.filter((c) => c.status !== 'pass').length,
+        });
+      }
       if (auditResults) {
         auditResults.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
@@ -587,7 +653,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   document.querySelectorAll('#auditImproveBtn, #heroAuditImproveBtn').forEach((btn) => {
-    btn.addEventListener('click', openAuditModal);
+    btn.addEventListener('click', () => {
+      if (typeof window.trackEvent === 'function') {
+        window.trackEvent('audit_improve_click');
+      }
+      openAuditModal();
+    });
   });
 
   if (auditModal) {
@@ -617,17 +688,16 @@ document.addEventListener('DOMContentLoaded', () => {
         fd.get('auditMessage') || ''
       ].join('\n');
 
-      fetch('https://formsubmit.co/ajax/admin@mathrix.co.uk', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
+      submitForm(
+        {
           name: name,
           email: fd.get('auditEmail'),
           phone: fd.get('auditPhone'),
           _subject: 'Website Audit — Improve Request from ' + name,
-          message: body
-        })
-      }).catch(() => {});
+          message: body,
+        },
+        'audit_lead_submit'
+      );
 
       auditContactForm.style.display = 'none';
       auditContactSuccess.style.display = 'block';
