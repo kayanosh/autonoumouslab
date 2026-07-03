@@ -379,6 +379,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  document.querySelectorAll('.nav-audit-cta').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href === '#hero' || href === '/#hero') {
+        e.preventDefault();
+        activateHeroTab('audit');
+        const hero = document.getElementById('hero');
+        if (hero) hero.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const heroAuditUrl = document.getElementById('heroAuditUrl');
+        if (heroAuditUrl) setTimeout(() => heroAuditUrl.focus(), 400);
+      }
+    });
+  });
+
+  const stickyMobileCta = document.getElementById('stickyMobileCta');
+  const heroSection = document.getElementById('hero');
+  if (stickyMobileCta && heroSection) {
+    const stickyObs = new IntersectionObserver(
+      ([entry]) => {
+        stickyMobileCta.classList.toggle('visible', !entry.isIntersecting);
+      },
+      { threshold: 0, rootMargin: '-80px 0px 0px 0px' }
+    );
+    stickyObs.observe(heroSection);
+  }
+
   const auditScrollToHero = document.getElementById('auditScrollToHero');
   if (auditScrollToHero) {
     auditScrollToHero.addEventListener('click', (e) => {

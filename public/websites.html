@@ -114,6 +114,87 @@
         .ws-back:hover {
             gap: 10px;
         }
+        .ws-hero-ctas {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-top: 28px;
+        }
+        .ws-cta-primary,
+        .ws-cta-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 14px 28px;
+            border-radius: 980px;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background .3s, transform .3s, border-color .3s;
+        }
+        .ws-cta-primary {
+            background: var(--blue);
+            color: var(--white);
+        }
+        .ws-cta-primary:hover {
+            background: var(--blue-hover);
+            transform: translateY(-2px);
+        }
+        .ws-cta-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,.2);
+        }
+        .ws-cta-secondary:hover {
+            border-color: rgba(255,255,255,.4);
+            transform: translateY(-2px);
+        }
+        .ws-card-img-logo {
+            background: linear-gradient(135deg, #0f3460, #1a1a2e);
+        }
+        .ws-card-img-logo img {
+            object-fit: contain;
+            padding: 32px;
+        }
+        .ws-card-fallback {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0f3460, #1a1a2e);
+        }
+        .ws-fallback-text {
+            font-size: 22px;
+            font-weight: 700;
+            color: rgba(255,255,255,.85);
+            text-align: center;
+            padding: 20px;
+        }
+        .ws-bottom-cta {
+            text-align: center;
+            padding: 60px 20px 100px;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        .ws-bottom-cta h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 700;
+            letter-spacing: -.02em;
+            margin-bottom: 16px;
+            color: var(--white);
+        }
+        .ws-bottom-cta p {
+            font-size: 17px;
+            color: var(--gray-400);
+            margin-bottom: 28px;
+            line-height: 1.6;
+        }
+        .ws-bottom-ctas {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
         @media (max-width: 734px) {
             .ws-grid {
                 grid-template-columns: 1fr;
@@ -153,24 +234,17 @@
         <a href="/" class="ws-back"><span>&#8249;</span> Back to Home</a>
         <h1>Websites We've <span class="text-grad">Built.</span></h1>
         <p>From restaurants to fintech platforms, every site is crafted to convert visitors into customers.</p>
+        <div class="ws-hero-ctas">
+            <a href="/#hero" class="ws-cta-primary">Run Free Website Audit <span>&#8250;</span></a>
+            <a href="/#contact" class="ws-cta-secondary">Start a project <span>&#8250;</span></a>
+        </div>
     </div>
 
     <div class="ws-grid">
 
-        <a href="https://therevertumrah.com/" target="_blank" rel="noopener noreferrer" class="ws-card">
-            <div class="ws-card-img-wrap">
-                <img src="https://static.wixstatic.com/media/4123e4_e3ff022a886240efb26bcb5a43372a30~mv2.png/v1/fill/w_600,h_400,al_c,q_85,enc_avif/IMG_3489_HEIC.png" alt="The Revert Umrah" loading="lazy">
-            </div>
-            <div class="ws-card-body">
-                <h3>The Revert Umrah</h3>
-                <p>Guided tarbiyyah Umrah journeys designed specifically for new Muslims, with spiritual support before, during, and after.</p>
-                <span class="ws-card-link">Visit site <span>&#8250;</span></span>
-            </div>
-        </a>
-
         <a href="https://akhookum.com/" target="_blank" rel="noopener noreferrer" class="ws-card">
             <div class="ws-card-img-wrap">
-                <img src="https://akhookum.com/_astro/logo.py4zyfJ__2uQ0ux.webp" alt="Akhookum Institute" loading="lazy" style="object-fit:contain;background:#0a0a0a;padding:30px">
+                <img src="/thumbs/akhookum.png" alt="Akhookum Institute" loading="lazy">
             </div>
             <div class="ws-card-body">
                 <h3>Akhookum Institute</h3>
@@ -180,8 +254,8 @@
         </a>
 
         <a href="https://getsmotives.com/" target="_blank" rel="noopener noreferrer" class="ws-card">
-            <div class="ws-card-img-wrap">
-                <img src="https://getsmotives.com/favicon.svg" alt="Getsmotives" loading="lazy" style="object-fit:contain;background:linear-gradient(135deg,#1a1a2e,#16213e);padding:40px">
+            <div class="ws-card-img-wrap ws-card-img-logo">
+                <img src="/thumbs/getsmotives.png" alt="Getsmotives" loading="lazy">
             </div>
             <div class="ws-card-body">
                 <h3>Getsmotives</h3>
@@ -192,7 +266,7 @@
 
         <a href="https://kayanaforbusiness.com/" target="_blank" rel="noopener noreferrer" class="ws-card">
             <div class="ws-card-img-wrap">
-                <img src="/kayana-thumb.webp" alt="Kayana for Business" loading="lazy">
+                <img src="/thumbs/kayana.webp" alt="Kayana for Business" loading="lazy">
             </div>
             <div class="ws-card-body">
                 <h3>Kayana for Business</h3>
@@ -257,8 +331,8 @@
         </a>
 
         <a href="https://idapfootballacademy.com/" target="_blank" rel="noopener noreferrer" class="ws-card">
-            <div class="ws-card-img-wrap">
-                <img src="https://idapfootballacademy.com/assets/logo-ifa.png" alt="IDAP Football Academy" loading="lazy" style="object-fit:contain;background:#0a1a0a;padding:30px">
+            <div class="ws-card-img-wrap ws-card-img-logo">
+                <img src="https://idapfootballacademy.com/assets/logo-ifa.png" alt="IDAP Football Academy" loading="lazy">
             </div>
             <div class="ws-card-body">
                 <h3>IDAP Football Academy</h3>
@@ -268,8 +342,8 @@
         </a>
 
         <a href="https://www.mathrix.co.uk/" target="_blank" rel="noopener noreferrer" class="ws-card">
-            <div class="ws-card-img-wrap">
-                <img src="https://www.mathrix.co.uk/logo.png" alt="Mathrix" loading="lazy" style="object-fit:contain;background:#0a0a0a;padding:40px">
+            <div class="ws-card-img-wrap ws-card-img-logo">
+                <img src="https://www.mathrix.co.uk/logo.png" alt="Mathrix" loading="lazy">
             </div>
             <div class="ws-card-body">
                 <h3>Mathrix</h3>
@@ -279,8 +353,8 @@
         </a>
 
         <a href="https://www.autonomouslab.co.uk/" target="_blank" rel="noopener noreferrer" class="ws-card">
-            <div class="ws-card-img-wrap">
-                <img src="https://www.autonomouslab.co.uk/proof/stripe-dashboard.png" alt="Autonomous Lab" loading="lazy">
+            <div class="ws-card-img-wrap ws-card-img-logo">
+                <img src="/thumbs/autonomouslab.ico" alt="Autonomous Lab" loading="lazy">
             </div>
             <div class="ws-card-body">
                 <h3>Autonomous Lab</h3>
@@ -289,12 +363,26 @@
             </div>
         </a>
 
+        <a href="https://therevertumrah.com/" target="_blank" rel="noopener noreferrer" class="ws-card">
+            <div class="ws-card-img-wrap">
+                <img src="/thumbs/revert-umrah.jpg" alt="The Revert Umrah" loading="lazy">
+            </div>
+            <div class="ws-card-body">
+                <h3>The Revert Umrah</h3>
+                <p>Guided tarbiyyah Umrah journeys designed specifically for new Muslims, with spiritual support before, during, and after.</p>
+                <span class="ws-card-link">Visit site <span>&#8250;</span></span>
+            </div>
+        </a>
+
     </div>
 
-    <div style="text-align:center;padding:60px 20px 100px">
-        <h2 style="font-size:clamp(28px,4vw,40px);font-weight:700;letter-spacing:-.02em;margin-bottom:16px;color:var(--white)">Ready to build your website?</h2>
-        <p style="font-size:17px;color:var(--gray-400);margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.6">Let's create something your customers will love. Get in touch and we'll bring your vision to life.</p>
-        <a href="/#contact" style="display:inline-flex;align-items:center;gap:6px;padding:14px 32px;background:var(--blue);color:var(--white);border-radius:980px;font-size:15px;font-weight:600;transition:background .3s,transform .3s;text-decoration:none" onmouseover="this.style.background='var(--blue-hover)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--blue)';this.style.transform='none'">Start a project <span>&#8250;</span></a>
+    <div class="ws-bottom-cta">
+        <h2>Ready to grow your website?</h2>
+        <p>Run a free audit to see what's holding you back, or start a project with our team.</p>
+        <div class="ws-bottom-ctas">
+            <a href="/#hero" class="ws-cta-primary">Run Free Audit <span>&#8250;</span></a>
+            <a href="/#contact" class="ws-cta-secondary">Start a project <span>&#8250;</span></a>
+        </div>
     </div>
 
     <script>
@@ -311,11 +399,18 @@
                 menuBtn.classList.toggle('open');
             });
         }
-        // Image error fallback - show gradient placeholder
+        // Image error fallback - show project name on gradient
         document.querySelectorAll('.ws-card-img-wrap img').forEach(function(img) {
             img.addEventListener('error', function() {
+                const name = this.alt || 'Project';
                 this.style.display = 'none';
-                this.parentElement.style.background = 'linear-gradient(135deg, #0f3460, #1a1a2e)';
+                this.parentElement.classList.add('ws-card-fallback');
+                if (!this.parentElement.querySelector('.ws-fallback-text')) {
+                    const span = document.createElement('span');
+                    span.className = 'ws-fallback-text';
+                    span.textContent = name;
+                    this.parentElement.appendChild(span);
+                }
             });
         });
     </script>
